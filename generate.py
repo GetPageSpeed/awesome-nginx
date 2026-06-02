@@ -21,6 +21,9 @@ import json
 import os
 import re
 import sys
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import yaml
@@ -28,10 +31,23 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent
 README_PATH = REPO_ROOT / "README.md"
 CATEGORIES_PATH = REPO_ROOT / "categories.yml"
+LINK_CACHE_PATH = REPO_ROOT / ".link-cache.json"
 BEGIN_MARKER = "<!-- BEGIN GENERATED -->"
 END_MARKER = "<!-- END GENERATED -->"
 
 DEFAULT_NGINX_EXTRAS = Path.home() / "Projects" / "nginx-extras"
+
+# Hard denylist — never emit a URL pointing at these repos, even if probing
+# would somehow report 200 (e.g. transient redirect). These are the GetPageSpeed
+# packaging-infra repos that are private by policy.
+PRIVATE_REPO_DENYLIST = {
+    "getpagespeed/rpmbuilder",
+    "getpagespeed/debbuilder",
+    "getpagespeed/buildstrap",
+    "getpagespeed/getpagespeed-extras-release",
+    "getpagespeed/nginx-extras",
+    "getpagespeed/nginx-extras-docs",
+}
 
 
 def load_nginx_extras(extras_dir: Path) -> dict[str, dict]:
@@ -250,9 +266,97 @@ def splice_readme(body: str) -> str:
     return f"{pre}{BEGIN_MARKER}\n\n{body}\n{END_MARKER}{post}"
 
 
+def load_link_cache() -> dict:
+    if LINK_CACHE_PATH.is_file():
+        try:
+            return json.loads(LINK_CACHE_PATH.read_text())
+        except Exception:
+            return {}
+    return {}
+
+
+def save_link_cache(cache: dict) -> None:
+    LINK_CACHE_PATH.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n")
+
+
+def probe_url(url: str) -> int:
+    """HEAD request; returns HTTP status (0 on connection error)."""
+    try:
+        req = urllib.request.Request(
+            url,
+            method="HEAD",
+            headers={"User-Agent": "awesome-nginx-probe/1 (+https://github.com/GetPageSpeed/awesome-nginx)"},
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        # Some sites (notably github.com on HEAD) sometimes return 4xx for HEAD
+        # but 200 on GET. Retry once with GET to avoid false negatives.
+        if e.code in (403, 405, 429):
+            try:
+                req2 = urllib.request.Request(
+                    url,
+                    method="GET",
+                    headers={"User-Agent": "awesome-nginx-probe/1"},
+                )
+                with urllib.request.urlopen(req2, timeout=15) as r:
+                    return r.status
+            except urllib.error.HTTPError as e2:
+                return e2.code
+            except Exception:
+                return 0
+        return e.code
+    except Exception:
+        return 0
+
+
+def audit_links(by_cat: dict, refresh: bool) -> tuple[list, dict]:
+    """Probe every emitted URL. Return (bad_entries, updated_cache).
+
+    bad_entries: list of (status, url, label, category) for non-200 or denylisted.
+    """
+    cache = load_link_cache()
+    all_entries = [(cat, e) for cat, entries in by_cat.items() for e in entries]
+
+    # Denylist check first (no network needed)
+    bad: list[tuple] = []
+    for cat, e in all_entries:
+        repo = (e.get("repo") or "").lower()
+        if repo and repo in PRIVATE_REPO_DENYLIST:
+            bad.append(("DENYLIST", e["url"], e["label"], cat))
+
+    # URLs to probe (skip those already cached fresh unless --refresh)
+    urls_to_probe = []
+    for cat, e in all_entries:
+        url = e["url"]
+        if url in cache and not refresh:
+            continue
+        urls_to_probe.append(url)
+    urls_to_probe = sorted(set(urls_to_probe))
+
+    if urls_to_probe:
+        print(f"Probing {len(urls_to_probe)} URLs...", file=sys.stderr)
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            for url, status in zip(urls_to_probe, ex.map(probe_url, urls_to_probe)):
+                cache[url] = status
+
+    for cat, e in all_entries:
+        url = e["url"]
+        status = cache.get(url, 0)
+        if status != 200 and status not in (206, 429):
+            # Skip duplicates already flagged by denylist
+            if any(b[1] == url for b in bad):
+                continue
+            bad.append((status, url, e["label"], cat))
+
+    return bad, cache
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Exit 1 if README would change.")
+    parser.add_argument("--no-probe", action="store_true", help="Skip the URL probe (use cache if present, otherwise no check).")
+    parser.add_argument("--refresh-probe", action="store_true", help="Re-probe every URL ignoring the cache.")
     parser.add_argument(
         "--extras-dir",
         type=Path,
@@ -266,6 +370,18 @@ def main() -> int:
     discovered = load_discovered(args.extras_dir)
 
     by_cat = build_entries(cats, extras, discovered)
+
+    # URL audit — fail-fast so we never emit a README with bad/private links.
+    if not args.no_probe:
+        bad, cache = audit_links(by_cat, refresh=args.refresh_probe)
+        save_link_cache(cache)
+        if bad:
+            print("\nERROR: the following entries link to URLs that are private, dead, or unreachable:", file=sys.stderr)
+            for status, url, label, cat in bad:
+                print(f"  [{status}] [{cat}] {label}: {url}", file=sys.stderr)
+            print("\nFix `categories.yml` (use the public docs page, the canonical upstream, or drop the entry).", file=sys.stderr)
+            return 2
+
     body = render_body(by_cat, cats["categories_order"])
     new_readme = splice_readme(body)
 

@@ -41,13 +41,9 @@ Every entry is something we run in production, package as an RPM or DEB, or buil
 ## Packaging and distribution
 
 - [extras.getpagespeed.com](https://extras.getpagespeed.com/) - Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions. ⭐
-- [buildstrap](https://github.com/GetPageSpeed/buildstrap) - Bootstraps CircleCI configs for the RPM/DEB build matrix. ⭐
-- [debbuilder](https://github.com/GetPageSpeed/debbuilder) - Debian/Ubuntu equivalent of rpmbuilder. ⭐
 - [docker-nginx](https://github.com/nginxinc/docker-nginx) - Official NGINX Docker images.
-- [getpagespeed-extras-release](https://github.com/GetPageSpeed/getpagespeed-extras-release) - YUM/DNF release RPM that wires up the GetPageSpeed extras repository. ⭐
 - [lastversion](https://github.com/dvershinin/lastversion) - Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites. ⭐
 - [nginx.org Linux packages](https://nginx.org/en/linux_packages.html) - Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES.
-- [rpmbuilder](https://github.com/GetPageSpeed/rpmbuilder) - Containerised RPM build harness, same tool that powers extras.getpagespeed.com. ⭐
 
 ## Configuration and tooling
 

@@ -216,10 +216,6 @@ extras:
 
   # Packaging and distribution
   - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", original_by_gps: true, pin: 1 }
-  - { repo: "GetPageSpeed/getpagespeed-extras-release", category: "Packaging and distribution", description: "YUM/DNF release RPM that wires up the GetPageSpeed extras repository." }
-  - { repo: "GetPageSpeed/rpmbuilder",                category: "Packaging and distribution", description: "Containerised RPM build harness, same tool that powers extras.getpagespeed.com.", original_by_gps: true }
-  - { repo: "GetPageSpeed/debbuilder",                category: "Packaging and distribution", description: "Debian/Ubuntu equivalent of rpmbuilder.", original_by_gps: true }
-  - { repo: "GetPageSpeed/buildstrap",                category: "Packaging and distribution", description: "Bootstraps CircleCI configs for the RPM/DEB build matrix.", original_by_gps: true }
   - { repo: "dvershinin/lastversion",                 category: "Packaging and distribution", description: "Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites.", original_by_gps: true }
   - { repo: "nginxinc/docker-nginx",                  category: "Packaging and distribution", description: "Official NGINX Docker images." }
   - { url: "https://nginx.org/en/linux_packages.html", title: "nginx.org Linux packages", category: "Packaging and distribution", description: "Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES." }
