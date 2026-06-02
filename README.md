@@ -148,6 +148,7 @@ Every entry is something we run in production, package as an RPM or DEB, or buil
 
 ## Logging and observability
 
+- [GetPageSpeed Amplify](https://amplify.getpagespeed.com/) - Hosted NGINX monitoring with built-in continuous gixy scanning; drop-in compatible with the deprecated `nginx-amplify-agent`. ⭐
 - [nginx-module-vts](https://github.com/vozlt/nginx-module-vts) - Virtual-host traffic status module, Prometheus / JSON / HTML real-time stats. 📦
 - [graphite-nginx-module](https://github.com/mailru/graphite-nginx-module) - Send per-location stats directly to Graphite. 📦
 - [log-zmq](https://nginx-extras.getpagespeed.com/modules/log-zmq/) - Stream access logs over ZeroMQ for centralized collection. 📦 ⭐
