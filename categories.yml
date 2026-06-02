@@ -50,11 +50,12 @@ nginx_extras:
   waf: { category: "Security and WAF", description: "High-performance, ModSecurity-compatible WAF module for NGINX." }
   security: { category: "Security and WAF", description: "ModSecurity v3 connector for NGINX." }
 
+
   # Authentication
   auth-digest: { category: "Authentication" }
   auth-hash: { category: "Authentication" }
   auth-ldap: { category: "Authentication" }
-  auth-pam: { category: "Authentication" }
+  auth-pam: { category: "Authentication", link: "https://nginx-extras.getpagespeed.com/modules/auth-pam/", label: "auth-pam"  }
   auth-radius: { category: "Authentication" }
   auth-totp: { category: "Authentication", description: "Time-based one-time password (TOTP) HTTP authentication for NGINX." }
   aws-auth: { category: "Authentication", description: "Proxy to authenticated AWS services (S3 and friends)." }
@@ -65,11 +66,11 @@ nginx_extras:
   pta: { category: "Authentication", description: "Period-of-Time Authentication, restricts access to a window in time." }
   secure-token: { category: "Authentication", description: "Generates CDN tokens (cookie or query-string) for signed URL delivery (by Kaltura)." }
   shibboleth: { category: "Authentication", description: "Shibboleth auth-request module for SAML SSO." }
-  spnego-http-auth: { category: "Authentication", description: "SPNEGO/Kerberos HTTP authentication." }
+  spnego-http-auth: { category: "Authentication", description: "SPNEGO/Kerberos HTTP authentication.", link: "https://nginx-extras.getpagespeed.com/modules/spnego-http-auth/", label: "spnego-http-auth"  }
   teslagov-jwt: { category: "Authentication", description: "JWT validation module (TeslaGov fork)." }
 
   # Bot mitigation
-  bot-verifier: { category: "Bot mitigation", description: "Verifies good-bot identity by reverse-DNS (Googlebot, Bingbot and friends)." }
+  bot-verifier: { category: "Bot mitigation", description: "Verifies good-bot identity by reverse-DNS (Googlebot, Bingbot and friends).", link: "https://github.com/repsheet/ngx_bot_verifier", label: "ngx_bot_verifier"  }
   captcha: { category: "Bot mitigation", description: "Native CAPTCHA generation and validation in NGINX." }
   js-challenge: { category: "Bot mitigation", description: "Proof-of-work JavaScript challenge for anti-DDoS, similar to Cloudflare's." }
   testcookie: { category: "Bot mitigation", description: "Cookie-based challenge/response for low-effort bot mitigation." }
@@ -77,32 +78,31 @@ nginx_extras:
   length-hiding: { category: "Bot mitigation", description: "Appends a random-length string to HTML responses to defeat BREACH/CRIME-class attacks." }
 
   # Caching and compression
-  cache-purge: { category: "Caching and compression", description: "Purge content from FastCGI, proxy, SCGI and uWSGI caches by URL.", pin: 1 }
+  cache-purge: { category: "Caching and compression", description: "Purge content from FastCGI, proxy, SCGI and uWSGI caches by URL.", link: "https://nginx-extras.getpagespeed.com/modules/cache-purge/", label: "cache-purge", pin: 1  }
   srcache: { category: "Caching and compression", description: "Transparent subrequest-based caching for arbitrary NGINX locations." }
   slowfs: { category: "Caching and compression", description: "Caches static files served from slow filesystems." }
   dynamic-etag: { category: "Caching and compression", description: "Adds correct ETag headers to dynamic responses, enabling 304s on proxied content." }
-  immutable: { category: "Caching and compression", description: "Marks public assets with Cache-Control: immutable so browsers stop revalidating fingerprinted files." }
-  sorted-args: { category: "Caching and compression", description: "Normalizes query-string parameter order to dramatically improve cache hit rates." }
+  immutable: { category: "Caching and compression", description: "Marks public assets with Cache-Control: immutable so browsers stop revalidating fingerprinted files.", link: "https://nginx-extras.getpagespeed.com/modules/immutable/", label: "immutable"  }
+  sorted-args: { category: "Caching and compression", description: "Normalizes query-string parameter order to dramatically improve cache hit rates.", link: "https://nginx-extras.getpagespeed.com/modules/sorted-args/", label: "sorted-args"  }
   brotli: { category: "Caching and compression", description: "Brotli compression module (GetPageSpeed fork of google/ngx_brotli with regular releases).", pin: 1 }
   unbrotli: { category: "Caching and compression", description: "Decompresses Brotli-encoded upstream responses for clients that don't support Brotli." }
   zstd: { category: "Caching and compression", description: "Zstandard compression module for NGINX (by tokers)." }
   unzstd: { category: "Caching and compression", description: "Decompresses Zstd-encoded upstream responses for clients that don't support Zstd." }
   compression-normalize: { category: "Caching and compression", description: "Parses and normalizes the Accept-Encoding header so caches see one canonical form." }
-  compression-vary: { category: "Caching and compression", description: "Enhanced Vary header handling for compression, emits the right Vary without duplicates." }
-
+  compression-vary: { category: "Caching and compression", description: "Enhanced Vary header handling for compression, emits the right Vary without duplicates.", link: "https://nginx-extras.getpagespeed.com/modules/compression-vary/", label: "compression-vary"  }
   # Headers, cookies and response filters
   headers-more: { category: "Headers, cookies and response filters", description: "Set, add and clear arbitrary input and output headers, far more capable than ngx_headers.", pin: 1 }
-  cookie-flag: { category: "Headers, cookies and response filters", description: "Sets HttpOnly, Secure and SameSite flags on cookies set by upstream." }
+  cookie-flag: { category: "Headers, cookies and response filters", description: "Sets HttpOnly, Secure and SameSite flags on cookies set by upstream.", link: "https://nginx-extras.getpagespeed.com/modules/cookie-flag/", label: "cookie-flag"  }
   request-cookies-filter: { category: "Headers, cookies and response filters", description: "Fine-grained control over which cookies reach the upstream." }
   rewrite-status: { category: "Headers, cookies and response filters", description: "Rewrite the response status code (turn 502 into 503 and friends)." }
-  internal-redirect: { category: "Headers, cookies and response filters", description: "Performs an internal redirect to a specified URI without a client round-trip." }
+  internal-redirect: { category: "Headers, cookies and response filters", description: "Performs an internal redirect to a specified URI without a client round-trip.", link: "https://nginx-extras.getpagespeed.com/modules/internal-redirect/", label: "internal-redirect"  }
   server-redirect: { category: "Headers, cookies and response filters", description: "Redirect the server_name within the same request." }
   substitutions: { category: "Headers, cookies and response filters", description: "Regex and fixed-string substitutions in response bodies." }
   trim: { category: "Headers, cookies and response filters", description: "Whitespace and comment trimming filter for HTML, CSS and JS responses." }
   concat: { category: "Headers, cookies and response filters", description: "Concatenates CSS and JS files referenced via ?<file>,<file>,..., Alibaba pattern." }
   loop-detect: { category: "Headers, cookies and response filters", description: "Honours the CDN-Loop header to break runaway proxy loops." }
   accept-language: { category: "Headers, cookies and response filters", description: "Parses Accept-Language and picks the best supported locale into a variable." }
-  device-type: { category: "Headers, cookies and response filters", description: "Comprehensive device detection at the NGINX edge, classifies requests by device class." }
+  device-type: { category: "Headers, cookies and response filters", description: "Comprehensive device detection at the NGINX edge, classifies requests by device class.", link: "https://nginx-extras.getpagespeed.com/modules/device-type/", label: "device-type"  }
   fancyindex: { category: "Headers, cookies and response filters", description: "Fancy autoindex listings (HTML5, sortable, themeable) replacing the bare-bones core directory listing." }
   xss: { category: "Headers, cookies and response filters", description: "Native cross-site AJAX (JSONP) support without going through Lua." }
 
@@ -117,9 +117,9 @@ nginx_extras:
   nchan: { category: "Streaming, media and image processing", description: "Scalable pub/sub server inside NGINX: HTTP, WebSocket, Server-Sent Events and long-polling." }
   jpeg: { category: "Streaming, media and image processing", description: "JPEG filter for overlays, logos and watermarks on JPEGs in flight." }
   webp: { category: "Streaming, media and image processing", description: "On-the-fly WebP conversion of JPEG and PNG responses." }
-  immerse: { category: "Streaming, media and image processing", description: "Modern-image-format filter: transparent WebP and AVIF delivery based on Accept." }
+  immerse: { category: "Streaming, media and image processing", description: "Modern-image-format filter: transparent WebP and AVIF delivery based on Accept.", link: "https://nginx-extras.getpagespeed.com/modules/immerse/", label: "immerse"  }
   small-light: { category: "Streaming, media and image processing", description: "Dynamic image transformation (resize, crop, rotate, watermark)." }
-  markdown: { category: "Streaming, media and image processing", description: "Renders Markdown files to HTML on the fly." }
+  markdown: { category: "Streaming, media and image processing", description: "Renders Markdown files to HTML on the fly.", link: "https://nginx-extras.getpagespeed.com/modules/markdown/", label: "markdown"  }
   html-sanitize: { category: "Streaming, media and image processing", description: "HTML5 sanitizer based on Google Gumbo, whitelisted elements, attributes and CSS." }
   untar: { category: "Streaming, media and image processing", description: "Serves file content directly out of tar archives." }
   zip: { category: "Streaming, media and image processing", description: "Assembles ZIP archives on the fly from a manifest of upstream URLs." }
@@ -136,7 +136,7 @@ nginx_extras:
   pipelog: { category: "Logging and observability", description: "Pipe access logs to an external program (analytics, alerting, archival)." }
   log-sqlite: { category: "Logging and observability", description: "SQLite-backed access log, queryable logs without a separate pipeline." }
   log-var-set: { category: "Logging and observability", description: "Set NGINX variables right before the access log writes, late-stage log enrichment." }
-  log-zmq: { category: "Logging and observability", description: "Stream access logs over ZeroMQ for centralized collection." }
+  log-zmq: { category: "Logging and observability", description: "Stream access logs over ZeroMQ for centralized collection.", link: "https://nginx-extras.getpagespeed.com/modules/log-zmq/", label: "log-zmq"  }
   upstream-log: { category: "Logging and observability", description: "Writes upstream-side request logs separate from the client-side access log." }
   error-log-write: { category: "Logging and observability", description: "Conditionally emit error-log entries from configuration." }
   otel: { category: "Logging and observability", description: "Official OpenTelemetry tracing exporter module for NGINX." }
@@ -147,8 +147,8 @@ nginx_extras:
   lua-upstream: { category: "Lua and OpenResty ecosystem", description: "Lua API for controlling NGINX upstreams at runtime." }
   njs: { category: "Lua and OpenResty ecosystem", description: "Official JavaScript scripting in NGINX (subset of ES5 + extensions)." }
   ndk: { category: "Lua and OpenResty ecosystem", description: "Nginx Devel Kit, generic toolkit that many third-party modules depend on." }
-  set-misc: { category: "Lua and OpenResty ecosystem", description: "set_xxx directives, md5, sha1, base64, hex, escape, quote, for the rewrite phase." }
-  echo: { category: "Lua and OpenResty ecosystem", description: "echo, sleep, time and exec directives for the content phase." }
+  set-misc: { category: "Lua and OpenResty ecosystem", description: "Provides set_xxx directives (md5, sha1, base64, hex, escape, quote) for the rewrite phase." }
+  echo: { category: "Lua and OpenResty ecosystem", description: "Echo, sleep, time and exec directives for the content phase." }
   eval: { category: "Lua and OpenResty ecosystem", description: "Evaluate memcached or proxy response into a variable." }
   encrypted-session: { category: "Lua and OpenResty ecosystem", description: "Encrypt and decrypt NGINX variable values, for sessionless session cookies." }
   array-var: { category: "Lua and OpenResty ecosystem", description: "Array-typed variables for the OpenResty stack." }
@@ -158,7 +158,7 @@ nginx_extras:
 
   # Performance and optimization
   pagespeed: { category: "Performance and optimization", description: "Apache mod_pagespeed for NGINX, automatic CSS/JS/image optimization at the edge.", pin: 1 }
-  tuning: { category: "Performance and optimization", description: "Observes real traffic patterns and proposes data-driven NGINX tuning." }
+  tuning: { category: "Performance and optimization", description: "Observes real traffic patterns and proposes data-driven NGINX tuning.", link: "https://nginx-extras.getpagespeed.com/modules/tuning/", label: "tuning"  }
   link: { category: "Performance and optimization", description: "Dlopen application code straight into NGINX request handling for ultra-low-latency endpoints." }
   sxg: { category: "Performance and optimization", description: "Signed HTTP Exchange (SXG) support, prefetch with original-origin attribution." }
   passenger: { category: "Performance and optimization", description: "Phusion Passenger application server module, runs Ruby/Python/Node apps inside NGINX." }
@@ -169,11 +169,11 @@ nginx_extras:
   upstream-fair: { category: "Upstreams, rate limiting and access control", description: "Fair load-balancer based on number of in-flight requests per backend." }
   upstream-jdomain: { category: "Upstreams, rate limiting and access control", description: "Async DNS resolution for upstream backends, survives DNS-only backends." }
   sticky: { category: "Upstreams, rate limiting and access control", description: "Sticky-cookie session affinity load balancer." }
-  combined-upstreams: { category: "Upstreams, rate limiting and access control", description: "add_upstream / combine_server_singlets directives for upstream composition." }
+  combined-upstreams: { category: "Upstreams, rate limiting and access control", description: "Adds add_upstream and combine_server_singlets directives for upstream composition." }
   upload: { category: "Upstreams, rate limiting and access control", description: "Streams multipart/form-data uploads straight to disk before passing metadata upstream." }
   upload-progress: { category: "Upstreams, rate limiting and access control", description: "Real-time upload progress tracking for browser UIs." }
-  ipset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel ipsets." }
-  nftset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel nftables sets." }
+  ipset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel ipsets.", link: "https://nginx-extras.getpagespeed.com/modules/ipset-access/", label: "ipset-access"  }
+  nftset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel nftables sets.", link: "https://nginx-extras.getpagespeed.com/modules/nftset-access/", label: "nftset-access"  }
   access-control: { category: "Upstreams, rate limiting and access control", description: "Advanced access control by NGINX variables (beyond allow / deny by IP)." }
   redis-rate-limit: { category: "Upstreams, rate limiting and access control", description: "Redis-backed cluster-wide rate limiting." }
   dynamic-limit-req: { category: "Upstreams, rate limiting and access control", description: "Dynamically locks an IP after threshold and releases it after a configurable window." }
@@ -199,7 +199,7 @@ nginx_extras:
   cgi: { category: "Networking and protocols", description: "Run classic CGI scripts under NGINX." }
   dav-ext: { category: "Networking and protocols", description: "Adds PROPFIND, OPTIONS, LOCK and UNLOCK to NGINX's core WebDAV." }
   geoip2: { category: "Networking and protocols", description: "MaxMind GeoIP2 lookups into NGINX variables." }
-  rdns: { category: "Networking and protocols", description: "Reverse-DNS lookup of the client IP into NGINX variables." }
+  rdns: { category: "Networking and protocols", description: "Reverse-DNS lookup of the client IP into NGINX variables.", link: "https://nginx-extras.getpagespeed.com/modules/rdns/", label: "rdns"  }
   coolkit: { category: "Networking and protocols", description: "Collection of small NGINX utilities, encoding, time helpers, IP utilities." }
 
 # ----- 3. Extra entries (not in nginx-extras) -----
@@ -208,7 +208,7 @@ extras:
 
   # Distributions and forks
   - { repo: "nginx/nginx",         category: "Distributions and forks", description: "Official NGINX source repository, mirrored from the canonical Mercurial.", pin: 1 }
-  - { repo: "freenginx/freenginx", category: "Distributions and forks", description: "Community fork of NGINX maintained by long-time NGINX core developer Maxim Dounin." }
+  - { url: "https://freenginx.org/", title: "freenginx", category: "Distributions and forks", description: "Community fork of NGINX maintained by long-time NGINX core developer Maxim Dounin." }
   - { repo: "openresty/openresty", category: "Distributions and forks", description: "Dynamic web platform based on NGINX and LuaJIT, bundling many modules out of the box." }
   - { repo: "alibaba/tengine",     category: "Distributions and forks", description: "Alibaba's NGINX fork with dynamic upstream, request-trace and additional optimisations." }
   - { repo: "webserver-llc/angie", category: "Distributions and forks", description: "Modern NGINX fork by ex-NGINX core engineers, adds ACME, HTTP/3, observability." }
@@ -216,8 +216,6 @@ extras:
 
   # Packaging and distribution
   - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", original_by_gps: true, pin: 1 }
-  - { repo: "GetPageSpeed/nginx-extras",              category: "Packaging and distribution", description: "Source of every module YAML packaged by extras.getpagespeed.com, submit a YAML, get a build.", original_by_gps: true }
-  - { repo: "GetPageSpeed/nginx-extras-docs",         category: "Packaging and distribution", description: "Auto-generated documentation site at nginx-extras.getpagespeed.com.", original_by_gps: true }
   - { repo: "GetPageSpeed/getpagespeed-extras-release", category: "Packaging and distribution", description: "YUM/DNF release RPM that wires up the GetPageSpeed extras repository." }
   - { repo: "GetPageSpeed/rpmbuilder",                category: "Packaging and distribution", description: "Containerised RPM build harness, same tool that powers extras.getpagespeed.com.", original_by_gps: true }
   - { repo: "GetPageSpeed/debbuilder",                category: "Packaging and distribution", description: "Debian/Ubuntu equivalent of rpmbuilder.", original_by_gps: true }

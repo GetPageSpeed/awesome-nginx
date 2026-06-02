@@ -106,8 +106,8 @@ def render_entry(entry: dict) -> str:
     url = entry["url"]
     desc = normalize_description(entry["description"])
     badges = []
-    if entry.get("gps_packaged") and entry.get("handle"):
-        badges.append(f"[📦]({docs_url(entry['handle'])})")
+    if entry.get("gps_packaged"):
+        badges.append("📦")
     if entry.get("original_by_gps"):
         badges.append("⭐")
     badge_str = (" " + " ".join(badges)) if badges else ""
@@ -142,8 +142,13 @@ def build_entries(
         meta = extras[handle]
         repo = meta["repo"]
         desc = conf.get("description") or meta.get("summary") or ""
-        url = github_url(repo) if repo else docs_url(handle)
-        label = repo.split("/", 1)[-1] if repo else handle
+        if conf.get("link"):
+            url = conf["link"]
+        elif repo:
+            url = github_url(repo)
+        else:
+            url = docs_url(handle)
+        label = conf.get("label") or (repo.split("/", 1)[-1] if repo else handle)
         by_cat[category].append({
             "label": label,
             "url": url,

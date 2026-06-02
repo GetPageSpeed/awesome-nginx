@@ -15,27 +15,11 @@ jobs:
           node-version: 20
       - run: npx awesome-lint
 
-  generator-drift:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          path: awesome-nginx
-      - uses: actions/checkout@v4
-        with:
-          repository: GetPageSpeed/nginx-extras
-          path: nginx-extras
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install deps
-        working-directory: awesome-nginx
-        run: pip install -r requirements.txt
-      - name: Check README is in sync with categories.yml
-        working-directory: awesome-nginx
-        env:
-          NGINX_EXTRAS_DIR: ${{ github.workspace }}/nginx-extras
-        run: python generate.py --check
+  # Note: a generator-drift check would re-run python generate.py against a
+  # clone of GetPageSpeed/nginx-extras and diff README.md. That repo is
+  # currently private (source-of-truth lives on Bitbucket), so CI can't clone
+  # it without a token. Local contributor discipline (`python generate.py`
+  # before commit, enforced by CONTRIBUTING.md) is the gate today.
 
   link-check:
     runs-on: ubuntu-latest
