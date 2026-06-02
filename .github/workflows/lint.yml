@@ -1,0 +1,48 @@
+name: lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  awesome-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npx awesome-lint
+
+  generator-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: awesome-nginx
+      - uses: actions/checkout@v4
+        with:
+          repository: GetPageSpeed/nginx-extras
+          path: nginx-extras
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        working-directory: awesome-nginx
+        run: pip install -r requirements.txt
+      - name: Check README is in sync with categories.yml
+        working-directory: awesome-nginx
+        env:
+          NGINX_EXTRAS_DIR: ${{ github.workspace }}/nginx-extras
+        run: python generate.py --check
+
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: lychee link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-concurrency 4 --accept 200,206,429 README.md
+          fail: true

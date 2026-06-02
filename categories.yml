@@ -1,0 +1,277 @@
+# Single source of truth for the Awesome NGINX list categorization.
+#
+# `generate.py` reads this file plus:
+#   - ~/Projects/nginx-extras/modules/**/*.yml   (132 packaged modules)
+#   - ~/Projects/nginx-extras/discovered.db.json (304 discovered-on-GitHub modules)
+#
+# The generated body of README.md replaces what is between the
+# <!-- BEGIN GENERATED --> / <!-- END GENERATED --> markers.
+#
+# Badge semantics (rendered next to the entry):
+#   gps_packaged: true     → 📦 (links to nginx-extras.getpagespeed.com install page)
+#   original_by_gps: true  → ⭐ (entry is authored under GetPageSpeed/ or dvershinin/)
+# Both badges are AUTO-ATTACHED for nginx-extras entries whose upstream repo
+# starts with GetPageSpeed/ or dvershinin/, so you usually only need to set
+# original_by_gps explicitly on `extras` entries.
+
+# ----- 1. Category ordering (H2 sections, top → bottom) -----
+
+categories_order:
+  - "Distributions and forks"
+  - "Packaging and distribution"
+  - "Configuration and tooling"
+  - "Security and WAF"
+  - "Authentication"
+  - "Bot mitigation"
+  - "Caching and compression"
+  - "Headers, cookies and response filters"
+  - "Streaming, media and image processing"
+  - "Logging and observability"
+  - "Lua and OpenResty ecosystem"
+  - "Performance and optimization"
+  - "Upstreams, rate limiting and access control"
+  - "Variables, JSON and extensibility"
+  - "Networking and protocols"
+  - "Documentation and learning"
+  - "Honourable mentions"
+
+# ----- 2. Modules from nginx-extras (handle = filename without .yml) -----
+# Entries get the 📦 badge automatically. Handles not listed are excluded.
+# Optional keys:
+#   description: override the YAML summary
+#   pin: integer (lower floats to top of category)
+
+nginx_extras:
+
+  # Security and WAF
+  acme: { category: "Security and WAF", description: "Automatic certificate management (ACMEv2) module for NGINX, by F5/NGINX Inc.", pin: 1 }
+  security-headers: { category: "Security and WAF", description: "Sends modern security headers (CSP, X-Frame-Options, Referrer-Policy) and strips insecure ones." }
+  naxsi: { category: "Security and WAF", description: "Open-source positive-model WAF for NGINX." }
+  waf: { category: "Security and WAF", description: "High-performance, ModSecurity-compatible WAF module for NGINX." }
+  security: { category: "Security and WAF", description: "ModSecurity v3 connector for NGINX." }
+
+  # Authentication
+  auth-digest: { category: "Authentication" }
+  auth-hash: { category: "Authentication" }
+  auth-ldap: { category: "Authentication" }
+  auth-pam: { category: "Authentication" }
+  auth-radius: { category: "Authentication" }
+  auth-totp: { category: "Authentication", description: "Time-based one-time password (TOTP) HTTP authentication for NGINX." }
+  aws-auth: { category: "Authentication", description: "Proxy to authenticated AWS services (S3 and friends)." }
+  hmac-secure-link: { category: "Authentication", description: "HMAC secure link module with OpenSSL hashes (alternative to the core ngx_http_secure_link)." }
+  jwt: { category: "Authentication", description: "Check for a valid JWT and proxy to upstream (max-lt/nginx-jwt-module)." }
+  ntlm: { category: "Authentication" }
+  phantom-token: { category: "Authentication", description: "Introspects phantom access tokens per RFC 7662 and forwards a JWT to the upstream." }
+  pta: { category: "Authentication", description: "Period-of-Time Authentication, restricts access to a window in time." }
+  secure-token: { category: "Authentication", description: "Generates CDN tokens (cookie or query-string) for signed URL delivery (by Kaltura)." }
+  shibboleth: { category: "Authentication", description: "Shibboleth auth-request module for SAML SSO." }
+  spnego-http-auth: { category: "Authentication", description: "SPNEGO/Kerberos HTTP authentication." }
+  teslagov-jwt: { category: "Authentication", description: "JWT validation module (TeslaGov fork)." }
+
+  # Bot mitigation
+  bot-verifier: { category: "Bot mitigation", description: "Verifies good-bot identity by reverse-DNS (Googlebot, Bingbot and friends)." }
+  captcha: { category: "Bot mitigation", description: "Native CAPTCHA generation and validation in NGINX." }
+  js-challenge: { category: "Bot mitigation", description: "Proof-of-work JavaScript challenge for anti-DDoS, similar to Cloudflare's." }
+  testcookie: { category: "Bot mitigation", description: "Cookie-based challenge/response for low-effort bot mitigation." }
+  cookie-limit: { category: "Bot mitigation", description: "Limits request rate per malicious forged cookie." }
+  length-hiding: { category: "Bot mitigation", description: "Appends a random-length string to HTML responses to defeat BREACH/CRIME-class attacks." }
+
+  # Caching and compression
+  cache-purge: { category: "Caching and compression", description: "Purge content from FastCGI, proxy, SCGI and uWSGI caches by URL.", pin: 1 }
+  srcache: { category: "Caching and compression", description: "Transparent subrequest-based caching for arbitrary NGINX locations." }
+  slowfs: { category: "Caching and compression", description: "Caches static files served from slow filesystems." }
+  dynamic-etag: { category: "Caching and compression", description: "Adds correct ETag headers to dynamic responses, enabling 304s on proxied content." }
+  immutable: { category: "Caching and compression", description: "Marks public assets with Cache-Control: immutable so browsers stop revalidating fingerprinted files." }
+  sorted-args: { category: "Caching and compression", description: "Normalizes query-string parameter order to dramatically improve cache hit rates." }
+  brotli: { category: "Caching and compression", description: "Brotli compression module (GetPageSpeed fork of google/ngx_brotli with regular releases).", pin: 1 }
+  unbrotli: { category: "Caching and compression", description: "Decompresses Brotli-encoded upstream responses for clients that don't support Brotli." }
+  zstd: { category: "Caching and compression", description: "Zstandard compression module for NGINX (by tokers)." }
+  unzstd: { category: "Caching and compression", description: "Decompresses Zstd-encoded upstream responses for clients that don't support Zstd." }
+  compression-normalize: { category: "Caching and compression", description: "Parses and normalizes the Accept-Encoding header so caches see one canonical form." }
+  compression-vary: { category: "Caching and compression", description: "Enhanced Vary header handling for compression, emits the right Vary without duplicates." }
+
+  # Headers, cookies and response filters
+  headers-more: { category: "Headers, cookies and response filters", description: "Set, add and clear arbitrary input and output headers, far more capable than ngx_headers.", pin: 1 }
+  cookie-flag: { category: "Headers, cookies and response filters", description: "Sets HttpOnly, Secure and SameSite flags on cookies set by upstream." }
+  request-cookies-filter: { category: "Headers, cookies and response filters", description: "Fine-grained control over which cookies reach the upstream." }
+  rewrite-status: { category: "Headers, cookies and response filters", description: "Rewrite the response status code (turn 502 into 503 and friends)." }
+  internal-redirect: { category: "Headers, cookies and response filters", description: "Performs an internal redirect to a specified URI without a client round-trip." }
+  server-redirect: { category: "Headers, cookies and response filters", description: "Redirect the server_name within the same request." }
+  substitutions: { category: "Headers, cookies and response filters", description: "Regex and fixed-string substitutions in response bodies." }
+  trim: { category: "Headers, cookies and response filters", description: "Whitespace and comment trimming filter for HTML, CSS and JS responses." }
+  concat: { category: "Headers, cookies and response filters", description: "Concatenates CSS and JS files referenced via ?<file>,<file>,..., Alibaba pattern." }
+  loop-detect: { category: "Headers, cookies and response filters", description: "Honours the CDN-Loop header to break runaway proxy loops." }
+  accept-language: { category: "Headers, cookies and response filters", description: "Parses Accept-Language and picks the best supported locale into a variable." }
+  device-type: { category: "Headers, cookies and response filters", description: "Comprehensive device detection at the NGINX edge, classifies requests by device class." }
+  fancyindex: { category: "Headers, cookies and response filters", description: "Fancy autoindex listings (HTML5, sortable, themeable) replacing the bare-bones core directory listing." }
+  xss: { category: "Headers, cookies and response filters", description: "Native cross-site AJAX (JSONP) support without going through Lua." }
+
+  # Streaming, media and image processing
+  rtmp: { category: "Streaming, media and image processing", description: "RTMP media streaming server based on the historical nginx-rtmp-module.", pin: 1 }
+  flv: { category: "Streaming, media and image processing", description: "HTTP-FLV streaming on top of nginx-rtmp-module." }
+  ts: { category: "Streaming, media and image processing", description: "MPEG-TS live streaming module." }
+  vod: { category: "Streaming, media and image processing", description: "On-the-fly MP4 repackager to DASH, HDS, HLS and MSS (by Kaltura)." }
+  live-common: { category: "Streaming, media and image processing", description: "Kaltura Media Framework shared module, HTTP API, events, persistence and Lua interop." }
+  srt: { category: "Streaming, media and image processing", description: "Haivision SRT (Secure Reliable Transport) TCP gateway module." }
+  push-stream: { category: "Streaming, media and image processing", description: "HTTP push (Comet, EventSource, long-polling, WebSocket) as a pure-NGINX pub/sub stream." }
+  nchan: { category: "Streaming, media and image processing", description: "Scalable pub/sub server inside NGINX: HTTP, WebSocket, Server-Sent Events and long-polling." }
+  jpeg: { category: "Streaming, media and image processing", description: "JPEG filter for overlays, logos and watermarks on JPEGs in flight." }
+  webp: { category: "Streaming, media and image processing", description: "On-the-fly WebP conversion of JPEG and PNG responses." }
+  immerse: { category: "Streaming, media and image processing", description: "Modern-image-format filter: transparent WebP and AVIF delivery based on Accept." }
+  small-light: { category: "Streaming, media and image processing", description: "Dynamic image transformation (resize, crop, rotate, watermark)." }
+  markdown: { category: "Streaming, media and image processing", description: "Renders Markdown files to HTML on the fly." }
+  html-sanitize: { category: "Streaming, media and image processing", description: "HTML5 sanitizer based on Google Gumbo, whitelisted elements, attributes and CSS." }
+  untar: { category: "Streaming, media and image processing", description: "Serves file content directly out of tar archives." }
+  zip: { category: "Streaming, media and image processing", description: "Assembles ZIP archives on the fly from a manifest of upstream URLs." }
+  f4fhds: { category: "Streaming, media and image processing", description: "HTTP Dynamic Streaming (HDS) f4f fragment handler (Adobe legacy)." }
+  ipscrub: { category: "Streaming, media and image processing", description: "Anonymizes client IP addresses in access logs (k-anonymity-style)." }
+
+  # Logging and observability
+  vts: { category: "Logging and observability", description: "Virtual-host traffic status module, Prometheus / JSON / HTML real-time stats.", pin: 1 }
+  sts: { category: "Logging and observability", description: "Stream server traffic status, same idea as VTS but for the stream {} block." }
+  stream-sts: { category: "Logging and observability", description: "Stream server traffic status core module (companion to sts)." }
+  traffic-accounting: { category: "Logging and observability", description: "Real-time incoming/outgoing traffic counters per zone." }
+  statsd: { category: "Logging and observability", description: "Send NGINX metrics to a StatsD collector." }
+  graphite: { category: "Logging and observability", description: "Send per-location stats directly to Graphite." }
+  pipelog: { category: "Logging and observability", description: "Pipe access logs to an external program (analytics, alerting, archival)." }
+  log-sqlite: { category: "Logging and observability", description: "SQLite-backed access log, queryable logs without a separate pipeline." }
+  log-var-set: { category: "Logging and observability", description: "Set NGINX variables right before the access log writes, late-stage log enrichment." }
+  log-zmq: { category: "Logging and observability", description: "Stream access logs over ZeroMQ for centralized collection." }
+  upstream-log: { category: "Logging and observability", description: "Writes upstream-side request logs separate from the client-side access log." }
+  error-log-write: { category: "Logging and observability", description: "Conditionally emit error-log entries from configuration." }
+  otel: { category: "Logging and observability", description: "Official OpenTelemetry tracing exporter module for NGINX." }
+
+  # Lua and OpenResty ecosystem
+  lua: { category: "Lua and OpenResty ecosystem", description: "Embed the power of LuaJIT into NGINX's HTTP request lifecycle.", pin: 1 }
+  stream-lua: { category: "Lua and OpenResty ecosystem", description: "Embed LuaJIT into NGINX's stream {} (TCP/UDP) processing." }
+  lua-upstream: { category: "Lua and OpenResty ecosystem", description: "Lua API for controlling NGINX upstreams at runtime." }
+  njs: { category: "Lua and OpenResty ecosystem", description: "Official JavaScript scripting in NGINX (subset of ES5 + extensions)." }
+  ndk: { category: "Lua and OpenResty ecosystem", description: "Nginx Devel Kit, generic toolkit that many third-party modules depend on." }
+  set-misc: { category: "Lua and OpenResty ecosystem", description: "set_xxx directives, md5, sha1, base64, hex, escape, quote, for the rewrite phase." }
+  echo: { category: "Lua and OpenResty ecosystem", description: "echo, sleep, time and exec directives for the content phase." }
+  eval: { category: "Lua and OpenResty ecosystem", description: "Evaluate memcached or proxy response into a variable." }
+  encrypted-session: { category: "Lua and OpenResty ecosystem", description: "Encrypt and decrypt NGINX variable values, for sessionless session cookies." }
+  array-var: { category: "Lua and OpenResty ecosystem", description: "Array-typed variables for the OpenResty stack." }
+  memc: { category: "Lua and OpenResty ecosystem", description: "Extended memcached upstream module (full memcached command set, not just GET)." }
+  redis2: { category: "Lua and OpenResty ecosystem", description: "Native upstream for the Redis 2.0+ protocol, full pipelining." }
+  wasm-wasmtime: { category: "Lua and OpenResty ecosystem", description: "Proxy-Wasm (WebAssembly) support for NGINX, powered by wasmtime." }
+
+  # Performance and optimization
+  pagespeed: { category: "Performance and optimization", description: "Apache mod_pagespeed for NGINX, automatic CSS/JS/image optimization at the edge.", pin: 1 }
+  tuning: { category: "Performance and optimization", description: "Observes real traffic patterns and proposes data-driven NGINX tuning." }
+  link: { category: "Performance and optimization", description: "Dlopen application code straight into NGINX request handling for ultra-low-latency endpoints." }
+  sxg: { category: "Performance and optimization", description: "Signed HTTP Exchange (SXG) support, prefetch with original-origin attribution." }
+  passenger: { category: "Performance and optimization", description: "Phusion Passenger application server module, runs Ruby/Python/Node apps inside NGINX." }
+
+  # Upstreams, rate limiting and access control
+  upsync: { category: "Upstreams, rate limiting and access control", description: "Sync HTTP upstreams from Consul or etcd without reloading NGINX." }
+  stream-upsync: { category: "Upstreams, rate limiting and access control", description: "Sync stream {} upstreams from Consul or etcd." }
+  upstream-fair: { category: "Upstreams, rate limiting and access control", description: "Fair load-balancer based on number of in-flight requests per backend." }
+  upstream-jdomain: { category: "Upstreams, rate limiting and access control", description: "Async DNS resolution for upstream backends, survives DNS-only backends." }
+  sticky: { category: "Upstreams, rate limiting and access control", description: "Sticky-cookie session affinity load balancer." }
+  combined-upstreams: { category: "Upstreams, rate limiting and access control", description: "add_upstream / combine_server_singlets directives for upstream composition." }
+  upload: { category: "Upstreams, rate limiting and access control", description: "Streams multipart/form-data uploads straight to disk before passing metadata upstream." }
+  upload-progress: { category: "Upstreams, rate limiting and access control", description: "Real-time upload progress tracking for browser UIs." }
+  ipset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel ipsets." }
+  nftset-access: { category: "Upstreams, rate limiting and access control", description: "Zero-latency IP allow/deny using Linux kernel nftables sets." }
+  access-control: { category: "Upstreams, rate limiting and access control", description: "Advanced access control by NGINX variables (beyond allow / deny by IP)." }
+  redis-rate-limit: { category: "Upstreams, rate limiting and access control", description: "Redis-backed cluster-wide rate limiting." }
+  dynamic-limit-req: { category: "Upstreams, rate limiting and access control", description: "Dynamically locks an IP after threshold and releases it after a configurable window." }
+  limit-traffic-rate: { category: "Upstreams, rate limiting and access control", description: "Rate-limit traffic by arbitrary NGINX variables (e.g. per token, per geo)." }
+  delay: { category: "Upstreams, rate limiting and access control", description: "Insert a configurable delay before responding, useful for shaping or tarpitting." }
+  sysguard: { category: "Upstreams, rate limiting and access control", description: "Sheds load when system CPU, memory or RT exceeds thresholds." }
+
+  # Variables, JSON and extensibility
+  var: { category: "Variables, JSON and extensibility", description: "Dynamically assign variables via predefined functions (math, string, hash)." }
+  json: { category: "Variables, JSON and extensibility", description: "Dumps a $json variable into a string." }
+  json-var: { category: "Variables, JSON and extensibility", description: "Group variable expressions as a JSON value for clean logging." }
+  label: { category: "Variables, JSON and extensibility", description: "Define global key-value labels for dynamic configuration." }
+  let: { category: "Variables, JSON and extensibility", description: "Arithmetic and string expressions in the rewrite phase." }
+  keyval: { category: "Variables, JSON and extensibility", description: "Key-value store backed module, variables sourced from disk-backed KV pairs." }
+  form-input: { category: "Variables, JSON and extensibility", description: "Parses application/x-www-form-urlencoded request bodies into variables." }
+  iconv: { category: "Variables, JSON and extensibility", description: "Character-set conversion of request and response bodies via libiconv." }
+  postgres: { category: "Variables, JSON and extensibility", description: "Direct PostgreSQL upstream, no PHP / app layer needed for read-heavy paths." }
+
+  # Networking and protocols
+  proxy-connect: { category: "Networking and protocols", description: "Adds HTTP CONNECT (forward-proxy) support to NGINX." }
+  doh: { category: "Networking and protocols", description: "Serve DNS-over-HTTPS responses straight from NGINX." }
+  ajp: { category: "Networking and protocols", description: "Apache AJP13 protocol upstream (talk to Tomcat / JBoss natively)." }
+  cgi: { category: "Networking and protocols", description: "Run classic CGI scripts under NGINX." }
+  dav-ext: { category: "Networking and protocols", description: "Adds PROPFIND, OPTIONS, LOCK and UNLOCK to NGINX's core WebDAV." }
+  geoip2: { category: "Networking and protocols", description: "MaxMind GeoIP2 lookups into NGINX variables." }
+  rdns: { category: "Networking and protocols", description: "Reverse-DNS lookup of the client IP into NGINX variables." }
+  coolkit: { category: "Networking and protocols", description: "Collection of small NGINX utilities, encoding, time helpers, IP utilities." }
+
+# ----- 3. Extra entries (not in nginx-extras) -----
+
+extras:
+
+  # Distributions and forks
+  - { repo: "nginx/nginx",         category: "Distributions and forks", description: "Official NGINX source repository, mirrored from the canonical Mercurial.", pin: 1 }
+  - { repo: "freenginx/freenginx", category: "Distributions and forks", description: "Community fork of NGINX maintained by long-time NGINX core developer Maxim Dounin." }
+  - { repo: "openresty/openresty", category: "Distributions and forks", description: "Dynamic web platform based on NGINX and LuaJIT, bundling many modules out of the box." }
+  - { repo: "alibaba/tengine",     category: "Distributions and forks", description: "Alibaba's NGINX fork with dynamic upstream, request-trace and additional optimisations." }
+  - { repo: "webserver-llc/angie", category: "Distributions and forks", description: "Modern NGINX fork by ex-NGINX core engineers, adds ACME, HTTP/3, observability." }
+  - { url: "https://www.nginx.com/products/nginx/", title: "NGINX Plus", category: "Distributions and forks", description: "Commercial NGINX with live activity monitoring, dynamic config and JWT/SAML auth, by F5." }
+
+  # Packaging and distribution
+  - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", original_by_gps: true, pin: 1 }
+  - { repo: "GetPageSpeed/nginx-extras",              category: "Packaging and distribution", description: "Source of every module YAML packaged by extras.getpagespeed.com, submit a YAML, get a build.", original_by_gps: true }
+  - { repo: "GetPageSpeed/nginx-extras-docs",         category: "Packaging and distribution", description: "Auto-generated documentation site at nginx-extras.getpagespeed.com.", original_by_gps: true }
+  - { repo: "GetPageSpeed/getpagespeed-extras-release", category: "Packaging and distribution", description: "YUM/DNF release RPM that wires up the GetPageSpeed extras repository." }
+  - { repo: "GetPageSpeed/rpmbuilder",                category: "Packaging and distribution", description: "Containerised RPM build harness, same tool that powers extras.getpagespeed.com.", original_by_gps: true }
+  - { repo: "GetPageSpeed/debbuilder",                category: "Packaging and distribution", description: "Debian/Ubuntu equivalent of rpmbuilder.", original_by_gps: true }
+  - { repo: "GetPageSpeed/buildstrap",                category: "Packaging and distribution", description: "Bootstraps CircleCI configs for the RPM/DEB build matrix.", original_by_gps: true }
+  - { repo: "dvershinin/lastversion",                 category: "Packaging and distribution", description: "Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites.", original_by_gps: true }
+  - { repo: "nginxinc/docker-nginx",                  category: "Packaging and distribution", description: "Official NGINX Docker images." }
+  - { url: "https://nginx.org/en/linux_packages.html", title: "nginx.org Linux packages", category: "Packaging and distribution", description: "Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES." }
+
+  # Configuration and tooling
+  - { repo: "dvershinin/gixy",      category: "Configuration and tooling", description: "Static analyzer that catches alias-traversal, SSRF, host-header attacks and other NGINX config footguns.", original_by_gps: true, pin: 1 }
+  - { repo: "GetPageSpeed/gixy-jetbrains", category: "Configuration and tooling", description: "JetBrains IDE plugin surfacing gixy findings inline.", original_by_gps: true }
+  - { repo: "dvershinin/crossplane",         category: "Configuration and tooling", description: "Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes.", original_by_gps: true }
+  - { repo: "dvershinin/off-by-slash",       category: "Configuration and tooling", description: "Detect alias-traversal misconfigurations (the trailing-slash class of bugs).", original_by_gps: true }
+  - { repo: "dvershinin/nginxpwner",         category: "Configuration and tooling", description: "Look for common NGINX misconfigurations and exploitable patterns.", original_by_gps: true }
+  - { repo: "dvershinin/nginx-honeypot",     category: "Configuration and tooling", description: "Run an NGINX honeypot to capture and study attacker behaviour.", original_by_gps: true }
+  - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic.", original_by_gps: true }
+  - { repo: "valentinxxx/nginxconfig.io",    category: "Configuration and tooling", description: "Online NGINX config generator with sensible TLS, performance and security defaults." }
+  - { url: "https://ssl-config.mozilla.org/", title: "Mozilla SSL Configuration Generator", category: "Configuration and tooling", description: "Mozilla-maintained generator for the TLS / cipher configuration block." }
+
+  # Lua / OpenResty extras
+  - { repo: "openresty/openresty",           category: "Lua and OpenResty ecosystem", description: "OpenResty platform, full Lua + NGINX bundle ready to deploy." }
+
+  # Documentation and learning
+  - { url: "https://nginx-extras.getpagespeed.com/", title: "nginx-extras.getpagespeed.com", category: "Documentation and learning", description: "Reference docs for every packaged NGINX module: installation, directives, examples.", original_by_gps: true, pin: 1 }
+  - { url: "https://nginx101.com/", title: "nginx101.com", category: "Documentation and learning", description: "Practical NGINX articles for the long tail of operator questions.", original_by_gps: true }
+  - { url: "https://www.getpagespeed.com/", title: "GetPageSpeed blog", category: "Documentation and learning", description: "Deep dives on NGINX tuning, modules and packaging from the engineering team behind this list.", original_by_gps: true }
+  - { url: "https://nginx.org/en/docs/", title: "Official NGINX documentation", category: "Documentation and learning", description: "The authoritative directive and module reference." }
+  - { url: "https://github.com/h5bp/server-configs-nginx", title: "h5bp/server-configs-nginx", category: "Documentation and learning", description: "Boilerplate server configs (cache headers, MIME types, security headers) from HTML5 Boilerplate." }
+  - { repo: "wallarm/awesome-nginx-security", category: "Documentation and learning", description: "Awesome list scoped to NGINX security: talks, WAFs, configuration analyzers." }
+  - { repo: "agile6v/awesome-nginx",          category: "Documentation and learning", description: "Long-running broad awesome-list of NGINX projects." }
+  - { repo: "fcambus/nginx-resources",        category: "Documentation and learning", description: "Curated collection of NGINX articles, books and tutorials." }
+  - { repo: "trimstray/nginx-admins-handbook", category: "Documentation and learning", description: "Exhaustive admin handbook covering performance, security, hardening and debugging." }
+  - { repo: "denji/nginx-tuning",             category: "Documentation and learning", description: "Tuning cheat-sheet for high-traffic NGINX deployments." }
+
+# ----- 4. Honourable mentions -----
+# Discovered nginx modules (via util/discover.py) that we don't (yet) package
+# but are notable enough to surface. Star counts are advisory; the generator
+# pulls live description and stars from discovered.db.json.
+
+honourable:
+  - { repo: "fooinha/nginx-ssl-ja3",                 category: "Honourable mentions", description: "TLS JA3 fingerprinting for bot and abuse detection." }
+  - { repo: "phuslu/nginx-ssl-fingerprint",          category: "Honourable mentions", description: "High-performance JA3 and HTTP/2 fingerprinting." }
+  - { repo: "grahamedgecombe/nginx-ct",              category: "Honourable mentions", description: "Certificate Transparency support, embeds SCTs into TLS handshakes." }
+  - { repo: "brg-liuwei/ngx_kafka_module",           category: "Honourable mentions", description: "Posts request bodies to a Kafka cluster, handy for log fan-out." }
+  - { repo: "zhouchangxun/ngx_healthcheck_module",   category: "Honourable mentions", description: "Active healthchecks for upstream servers in both http and stream contexts." }
+  - { repo: "wandenberg/nginx-video-thumbextractor-module", category: "Honourable mentions", description: "Extract thumbnails from video files on the fly." }
+  - { repo: "api7/wasm-nginx-module",                category: "Honourable mentions", description: "Run WebAssembly modules inside OpenResty / NGINX (alternative to wasmtime)." }
+  - { repo: "Kong/ngx_wasm_module",                  category: "Honourable mentions", description: "Kong's NGINX plus WebAssembly runtime." }
+  - { repo: "tarantool/nginx_upstream_module",       category: "Honourable mentions", description: "Native Tarantool upstream (REST, JSON, WebSockets, load balancing)." }
+  - { repo: "dannote/socks-nginx-module",            category: "Honourable mentions", description: "Adds SOCKS5 support to ngx_http_proxy_module." }
+  - { repo: "hashicorp/ngx_http_consul_backend_module", category: "Honourable mentions", description: "Set upstream backends directly from a Consul service catalog." }
+  - { repo: "lyokha/nginx-haskell-module",           category: "Honourable mentions", description: "Embed Haskell handlers, asynchronous tasks and services into NGINX." }
+  - { repo: "rryqszq4/ngx-php",                      category: "Honourable mentions", description: "Embedded PHP 7/8 scripting inside an NGINX module." }
+  - { repo: "cubicdaiya/ngx_dynamic_upstream",       category: "Honourable mentions", description: "Add, remove and modify upstream servers without reloading NGINX." }
+  - { repo: "mdirolf/nginx-gridfs",                  category: "Honourable mentions", description: "Serve files directly from MongoDB GridFS." }
+  - { repo: "arut/nginx-python-module",              category: "Honourable mentions", description: "Embed Python into NGINX request handling." }
+  - { repo: "alibaba/nginx-http-user-agent",         category: "Honourable mentions", description: "Match browsers and crawlers by User-Agent, Alibaba's pattern." }
