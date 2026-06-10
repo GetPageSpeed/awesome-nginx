@@ -1,8 +1,8 @@
 # Awesome NGINX [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> Production-grade NGINX modules, tools, distributions and learning resources, curated by GetPageSpeed.
+> High-performance web server, reverse proxy and load balancer powering a large share of the web.
 
-Every entry is something we run in production, package as an RPM or DEB, or built ourselves. Hobbyware, abandoned forks and proof-of-concept malware are left out by design.
+Every entry is something we at GetPageSpeed run in production, package as an RPM or DEB, or built ourselves. Hobbyware, abandoned forks and proof-of-concept malware are left out by design.
 
 - 📦 marks an entry we package as an RPM and DEB, installable in seconds on RHEL, Alma, Rocky, Amazon Linux, Fedora, Ubuntu, Debian and SLES.
 - ⭐ marks an entry authored under the GetPageSpeed or @dvershinin GitHub accounts.
