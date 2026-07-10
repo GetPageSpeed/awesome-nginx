@@ -97,13 +97,6 @@ def docs_url(handle: str) -> str:
     return f"https://nginx-extras.getpagespeed.com/modules/{handle}/"
 
 
-def is_gps_repo(repo: str) -> bool:
-    if not repo:
-        return False
-    owner = repo.split("/", 1)[0].lower()
-    return owner in {"getpagespeed", "dvershinin"}
-
-
 def normalize_description(text: str) -> str:
     """Single line, ends in a period (awesome-lint requirement)."""
     text = (text or "").strip()
@@ -124,8 +117,6 @@ def render_entry(entry: dict) -> str:
     badges = []
     if entry.get("gps_packaged"):
         badges.append("📦")
-    if entry.get("original_by_gps"):
-        badges.append("⭐")
     badge_str = (" " + " ".join(badges)) if badges else ""
     base = f"- [{label}]({url}) - {desc}{badge_str}"
     return base
@@ -171,7 +162,6 @@ def build_entries(
             "description": desc,
             "handle": handle,
             "gps_packaged": True,
-            "original_by_gps": is_gps_repo(repo),
             "pin": conf.get("pin"),
             "repo": repo,
         })
@@ -187,14 +177,12 @@ def build_entries(
             repo = ent["repo"]
             url = github_url(repo)
             label = ent.get("title") or repo.split("/", 1)[-1]
-            original_by_gps = ent.get("original_by_gps", is_gps_repo(repo))
             if repo.lower() in seen_repos:
                 continue
             seen_repos.add(repo.lower())
         elif "url" in ent:
             url = ent["url"]
             label = ent["title"]
-            original_by_gps = ent.get("original_by_gps", False)
         else:
             sys.exit(f"extras entry needs 'repo' or 'url': {ent}")
         by_cat[category].append({
@@ -203,7 +191,6 @@ def build_entries(
             "description": ent.get("description", ""),
             "handle": None,
             "gps_packaged": ent.get("gps_packaged", False),
-            "original_by_gps": original_by_gps,
             "pin": ent.get("pin"),
             "repo": ent.get("repo"),
         })
@@ -225,7 +212,6 @@ def build_entries(
             "description": desc,
             "handle": None,
             "gps_packaged": False,
-            "original_by_gps": is_gps_repo(repo),
             "pin": ent.get("pin"),
             "repo": repo,
         })

@@ -8,11 +8,9 @@
 # <!-- BEGIN GENERATED --> / <!-- END GENERATED --> markers.
 #
 # Badge semantics (rendered next to the entry):
-#   gps_packaged: true     → 📦 (links to nginx-extras.getpagespeed.com install page)
-#   original_by_gps: true  → ⭐ (entry is authored under GetPageSpeed/ or dvershinin/)
-# Both badges are AUTO-ATTACHED for nginx-extras entries whose upstream repo
-# starts with GetPageSpeed/ or dvershinin/, so you usually only need to set
-# original_by_gps explicitly on `extras` entries.
+#   gps_packaged: true → 📦 (links to nginx-extras.getpagespeed.com install page)
+# AUTO-ATTACHED for nginx-extras entries; set explicitly on `extras` entries
+# that should link to a packaged install page.
 
 # ----- 1. Category ordering (H2 sections, top → bottom) -----
 
@@ -215,32 +213,32 @@ extras:
   - { url: "https://www.nginx.com/products/nginx/", title: "NGINX Plus", category: "Distributions and forks", description: "Commercial NGINX with live activity monitoring, dynamic config and JWT/SAML auth, by F5." }
 
   # Packaging and distribution
-  - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", original_by_gps: true, pin: 1 }
-  - { repo: "dvershinin/lastversion",                 category: "Packaging and distribution", description: "Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites.", original_by_gps: true }
+  - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", pin: 1 }
+  - { repo: "dvershinin/lastversion",                 category: "Packaging and distribution", description: "Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites." }
   - { repo: "nginxinc/docker-nginx",                  category: "Packaging and distribution", description: "Official NGINX Docker images." }
   - { url: "https://nginx.org/en/linux_packages.html", title: "nginx.org Linux packages", category: "Packaging and distribution", description: "Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES." }
 
   # Configuration and tooling
-  - { repo: "dvershinin/gixy",      category: "Configuration and tooling", description: "Static analyzer that catches alias-traversal, SSRF, host-header attacks and other NGINX config footguns.", original_by_gps: true, pin: 1 }
-  - { repo: "GetPageSpeed/gixy-jetbrains", category: "Configuration and tooling", description: "JetBrains IDE plugin surfacing gixy findings inline.", original_by_gps: true }
-  - { repo: "dvershinin/crossplane",         category: "Configuration and tooling", description: "Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes.", original_by_gps: true }
-  - { repo: "dvershinin/off-by-slash",       category: "Configuration and tooling", description: "Detect alias-traversal misconfigurations (the trailing-slash class of bugs).", original_by_gps: true }
-  - { repo: "dvershinin/nginxpwner",         category: "Configuration and tooling", description: "Look for common NGINX misconfigurations and exploitable patterns.", original_by_gps: true }
-  - { repo: "dvershinin/nginx-honeypot",     category: "Configuration and tooling", description: "Run an NGINX honeypot to capture and study attacker behaviour.", original_by_gps: true }
-  - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic.", original_by_gps: true }
+  - { repo: "dvershinin/gixy",      category: "Configuration and tooling", description: "Static analyzer that catches alias-traversal, SSRF, host-header attacks and other NGINX config footguns.", pin: 1 }
+  - { repo: "GetPageSpeed/gixy-jetbrains", category: "Configuration and tooling", description: "JetBrains IDE plugin surfacing gixy findings inline." }
+  - { repo: "dvershinin/crossplane",         category: "Configuration and tooling", description: "Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes." }
+  - { repo: "dvershinin/off-by-slash",       category: "Configuration and tooling", description: "Detect alias-traversal misconfigurations (the trailing-slash class of bugs)." }
+  - { repo: "dvershinin/nginxpwner",         category: "Configuration and tooling", description: "Look for common NGINX misconfigurations and exploitable patterns." }
+  - { repo: "dvershinin/nginx-honeypot",     category: "Configuration and tooling", description: "Run an NGINX honeypot to capture and study attacker behaviour." }
+  - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic." }
   - { repo: "valentinxxx/nginxconfig.io",    category: "Configuration and tooling", description: "Online NGINX config generator with sensible TLS, performance and security defaults." }
   - { url: "https://ssl-config.mozilla.org/", title: "Mozilla SSL Configuration Generator", category: "Configuration and tooling", description: "Mozilla-maintained generator for the TLS / cipher configuration block." }
 
   # Logging and observability
-  - { url: "https://amplify.getpagespeed.com/", title: "GetPageSpeed Amplify", category: "Logging and observability", description: "Hosted NGINX monitoring with built-in continuous gixy scanning; drop-in compatible with the deprecated `nginx-amplify-agent`.", original_by_gps: true, pin: 0 }
+  - { url: "https://amplify.getpagespeed.com/", title: "GetPageSpeed Amplify", category: "Logging and observability", description: "Hosted NGINX monitoring with built-in continuous gixy scanning; drop-in compatible with the deprecated `nginx-amplify-agent`.", pin: 0 }
 
   # Lua / OpenResty extras
   - { repo: "openresty/openresty",           category: "Lua and OpenResty ecosystem", description: "OpenResty platform, full Lua + NGINX bundle ready to deploy." }
 
   # Documentation and learning
-  - { url: "https://nginx-extras.getpagespeed.com/", title: "nginx-extras.getpagespeed.com", category: "Documentation and learning", description: "Reference docs for every packaged NGINX module: installation, directives, examples.", original_by_gps: true, pin: 1 }
-  - { url: "https://nginx101.com/", title: "nginx101.com", category: "Documentation and learning", description: "Practical NGINX articles for the long tail of operator questions.", original_by_gps: true }
-  - { url: "https://www.getpagespeed.com/", title: "GetPageSpeed blog", category: "Documentation and learning", description: "Deep dives on NGINX tuning, modules and packaging from the engineering team behind this list.", original_by_gps: true }
+  - { url: "https://nginx-extras.getpagespeed.com/", title: "nginx-extras.getpagespeed.com", category: "Documentation and learning", description: "Reference docs for every packaged NGINX module: installation, directives, examples.", pin: 1 }
+  - { url: "https://nginx101.com/", title: "nginx101.com", category: "Documentation and learning", description: "Practical NGINX articles for the long tail of operator questions." }
+  - { url: "https://www.getpagespeed.com/", title: "GetPageSpeed blog", category: "Documentation and learning", description: "Deep dives on NGINX tuning, modules and packaging from the engineering team behind this list." }
   - { url: "https://nginx.org/en/docs/", title: "Official NGINX documentation", category: "Documentation and learning", description: "The authoritative directive and module reference." }
   - { url: "https://github.com/h5bp/server-configs-nginx", title: "h5bp/server-configs-nginx", category: "Documentation and learning", description: "Boilerplate server configs (cache headers, MIME types, security headers) from HTML5 Boilerplate." }
   - { repo: "wallarm/awesome-nginx-security", category: "Documentation and learning", description: "Awesome list scoped to NGINX security: talks, WAFs, configuration analyzers." }
