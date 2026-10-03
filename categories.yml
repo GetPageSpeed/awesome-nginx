@@ -228,6 +228,7 @@ extras:
   - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic." }
   - { repo: "valentinxxx/nginxconfig.io",    category: "Configuration and tooling", description: "Online NGINX config generator with sensible TLS, performance and security defaults." }
   - { url: "https://ssl-config.mozilla.org/", title: "Mozilla SSL Configuration Generator", category: "Configuration and tooling", description: "Mozilla-maintained generator for the TLS / cipher configuration block." }
+  - { url: "https://proxyforge.tech/", title: "ProxyForge", category: "Configuration and tooling", description: "Browser-based NGINX and Apache config generator for reverse proxies, redirects, Let's Encrypt TLS and security headers, with output tested via nginx -t." }
 
   # Logging and observability
   - { url: "https://amplify.getpagespeed.com/", title: "GetPageSpeed Amplify", category: "Logging and observability", description: "Hosted NGINX monitoring with built-in continuous gixy scanning; drop-in compatible with the deprecated `nginx-amplify-agent`.", pin: 0 }
