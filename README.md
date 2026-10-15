@@ -55,6 +55,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [nginxpwner](https://github.com/dvershinin/nginxpwner) - Look for common NGINX misconfigurations and exploitable patterns.
 - [ngxtop](https://github.com/GetPageSpeed/ngxtop) - Real-time NGINX top, like `top` for your traffic.
 - [off-by-slash](https://github.com/dvershinin/off-by-slash) - Detect alias-traversal misconfigurations (the trailing-slash class of bugs).
+- [server-rules-generator](https://github.com/PaidHost/server-rules-generator) - Generate matching NGINX, Apache, Caddy and Cloudflare rules for HTTPS, redirects, security headers and bot blocking, with a live web version.
 
 ## Security and WAF
 

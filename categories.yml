@@ -223,6 +223,7 @@ extras:
   - { repo: "GetPageSpeed/gixy-jetbrains", category: "Configuration and tooling", description: "JetBrains IDE plugin surfacing gixy findings inline." }
   - { repo: "dvershinin/crossplane",         category: "Configuration and tooling", description: "Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes." }
   - { repo: "dvershinin/off-by-slash",       category: "Configuration and tooling", description: "Detect alias-traversal misconfigurations (the trailing-slash class of bugs)." }
+  - { repo: "PaidHost/server-rules-generator", category: "Configuration and tooling", description: "Generate matching NGINX, Apache, Caddy and Cloudflare rules for HTTPS, redirects, security headers and bot blocking, with a live web version." }  
   - { repo: "dvershinin/nginxpwner",         category: "Configuration and tooling", description: "Look for common NGINX misconfigurations and exploitable patterns." }
   - { repo: "dvershinin/nginx-honeypot",     category: "Configuration and tooling", description: "Run an NGINX honeypot to capture and study attacker behaviour." }
   - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic." }
