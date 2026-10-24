@@ -1,8 +1,8 @@
 # Single source of truth for the Awesome NGINX list categorization.
 #
 # `generate.py` reads this file plus:
-#   - ~/Projects/nginx-extras/modules/**/*.yml   (132 packaged modules)
-#   - ~/Projects/nginx-extras/discovered.db.json (304 discovered-on-GitHub modules)
+#   - <nginx-extras>/modules/**/*.yml (132 packaged modules)
+#   - <nginx-extras>/discovered.db.json (304 discovered-on-GitHub modules)
 #
 # The generated body of README.md replaces what is between the
 # <!-- BEGIN GENERATED --> / <!-- END GENERATED --> markers.
