@@ -49,12 +49,12 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [gixy](https://github.com/dvershinin/gixy) - Static analyzer that catches alias-traversal, SSRF, host-header attacks and other NGINX config footguns.
 - [crossplane](https://github.com/dvershinin/crossplane) - Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes.
 - [gixy-jetbrains](https://github.com/GetPageSpeed/gixy-jetbrains) - JetBrains IDE plugin surfacing gixy findings inline.
-- [Mozilla SSL Configuration Generator](https://ssl-config.mozilla.org/) - Mozilla-maintained generator for the TLS / cipher configuration block.
 - [nginx-honeypot](https://github.com/dvershinin/nginx-honeypot) - Run an NGINX honeypot to capture and study attacker behaviour.
 - [nginxconfig.io](https://github.com/valentinxxx/nginxconfig.io) - Online NGINX config generator with sensible TLS, performance and security defaults.
 - [nginxpwner](https://github.com/dvershinin/nginxpwner) - Look for common NGINX misconfigurations and exploitable patterns.
 - [ngxtop](https://github.com/GetPageSpeed/ngxtop) - Real-time NGINX top, like `top` for your traffic.
 - [off-by-slash](https://github.com/dvershinin/off-by-slash) - Detect alias-traversal misconfigurations (the trailing-slash class of bugs).
+- [TLSRef Configurator](https://configurator.tlsref.org/) - Successor to the Mozilla SSL Configuration Generator for the TLS / cipher configuration block.
 
 ## Security and WAF
 
