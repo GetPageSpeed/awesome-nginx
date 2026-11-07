@@ -54,6 +54,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [nginxpwner](https://github.com/dvershinin/nginxpwner) - Look for common NGINX misconfigurations and exploitable patterns.
 - [ngxtop](https://github.com/GetPageSpeed/ngxtop) - Real-time NGINX top, like `top` for your traffic.
 - [off-by-slash](https://github.com/dvershinin/off-by-slash) - Detect alias-traversal misconfigurations (the trailing-slash class of bugs).
+- [ProxyForge](https://proxyforge.tech/) - Browser-based NGINX and Apache config generator for reverse proxies, WordPress, PHP-FPM and static sites, with separate generators for redirects, Let's Encrypt TLS and security headers. Output tested on real nginx 1.27.
 - [TLSRef Configurator](https://configurator.tlsref.org/) - Successor to the Mozilla SSL Configuration Generator for the TLS / cipher configuration block.
 
 ## Security and WAF
