@@ -74,7 +74,6 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [nginx-http-shibboleth](https://github.com/nginx-shib/nginx-http-shibboleth) - Shibboleth auth-request module for SAML SSO. 📦
 - [nginx-jwt-module](https://github.com/max-lt/nginx-jwt-module) - Check for a valid JWT and proxy to upstream (max-lt/nginx-jwt-module). 📦
 - [nginx-ntlm-module](https://github.com/dvershinin/nginx-ntlm-module) - NTLM NGINX Module. 📦
-- [nginx-secure-token-module](https://github.com/kaltura/nginx-secure-token-module) - Generates CDN tokens (cookie or query-string) for signed URL delivery (by Kaltura). 📦
 - [nginx_phantom_token_module](https://github.com/curityio/nginx_phantom_token_module) - Introspects phantom access tokens per RFC 7662 and forwards a JWT to the upstream. 📦
 - [ngx-http-auth-jwt-module](https://github.com/TeslaGov/ngx-http-auth-jwt-module) - JWT validation module (TeslaGov fork). 📦
 - [ngx_aws_auth](https://github.com/anomalizer/ngx_aws_auth) - Proxy to authenticated AWS services (S3 and friends). 📦
@@ -82,6 +81,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [ngx_http_auth_radius_module](https://github.com/dvershinin/ngx_http_auth_radius_module) - HTTP authentication via RADIUS protocol. 📦
 - [ngx_http_hmac_secure_link_module](https://github.com/nginx-modules/ngx_http_hmac_secure_link_module) - HMAC secure link module with OpenSSL hashes (alternative to the core ngx_http_secure_link). 📦
 - [pta](https://github.com/iij/pta) - Period-of-Time Authentication, restricts access to a window in time. 📦
+- [secure-token](https://nginx-extras.getpagespeed.com/modules/secure-token/) - Generates CDN tokens (cookie or query-string) for signed URL delivery (by Kaltura). 📦
 - [spnego-http-auth](https://nginx-extras.getpagespeed.com/modules/spnego-http-auth/) - SPNEGO/Kerberos HTTP authentication. 📦
 
 ## Bot mitigation
@@ -98,8 +98,8 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [cache-purge](https://nginx-extras.getpagespeed.com/modules/cache-purge/) - Purge content from FastCGI, proxy, SCGI and uWSGI caches by URL. 📦
 - [ngx_brotli](https://github.com/GetPageSpeed/ngx_brotli) - Brotli compression module (GetPageSpeed fork of google/ngx_brotli with regular releases). 📦
 - [compression-vary](https://nginx-extras.getpagespeed.com/modules/compression-vary/) - Enhanced Vary header handling for compression, emits the right Vary without duplicates. 📦
+- [dynamic-etag](https://nginx-extras.getpagespeed.com/modules/dynamic-etag/) - Adds correct ETag headers to dynamic responses, enabling 304s on proxied content. 📦
 - [immutable](https://nginx-extras.getpagespeed.com/modules/immutable/) - Marks public assets with Cache-Control: immutable so browsers stop revalidating fingerprinted files. 📦
-- [ngx_dynamic_etag](https://github.com/dvershinin/ngx_dynamic_etag) - Adds correct ETag headers to dynamic responses, enabling 304s on proxied content. 📦
 - [ngx_http_compression_normalize_module](https://github.com/dvershinin/ngx_http_compression_normalize_module) - Parses and normalizes the Accept-Encoding header so caches see one canonical form. 📦
 - [ngx_http_unzstd_filter_module](https://github.com/dvershinin/ngx_http_unzstd_filter_module) - Decompresses Zstd-encoded upstream responses for clients that don't support Zstd. 📦
 - [ngx_slowfs_cache](https://github.com/dvershinin/ngx_slowfs_cache) - Caches static files served from slow filesystems. 📦
@@ -131,20 +131,20 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [f4fhds](https://github.com/GetPageSpeed/f4fhds) - HTTP Dynamic Streaming (HDS) f4f fragment handler (Adobe legacy). 📦
 - [immerse](https://nginx-extras.getpagespeed.com/modules/immerse/) - Modern-image-format filter: transparent WebP and AVIF delivery based on Accept. 📦
 - [ipscrub](https://github.com/masonicboom/ipscrub) - Anonymizes client IP addresses in access logs (k-anonymity-style). 📦
+- [live-common](https://nginx-extras.getpagespeed.com/modules/live-common/) - Kaltura Media Framework shared module, HTTP API, events, persistence and Lua interop. 📦
 - [markdown](https://nginx-extras.getpagespeed.com/modules/markdown/) - Renders Markdown files to HTML on the fly. 📦
-- [media-framework](https://github.com/kaltura/media-framework) - Kaltura Media Framework shared module, HTTP API, events, persistence and Lua interop. 📦
 - [mod_zip](https://github.com/dvershinin/mod_zip) - Assembles ZIP archives on the fly from a manifest of upstream URLs. 📦
 - [modjpeg-nginx](https://github.com/ioppermann/modjpeg-nginx) - JPEG filter for overlays, logos and watermarks on JPEGs in flight. 📦
 - [nchan](https://github.com/slact/nchan) - Scalable pub/sub server inside NGINX: HTTP, WebSocket, Server-Sent Events and long-polling. 📦
 - [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module) - HTTP-FLV streaming on top of nginx-rtmp-module. 📦
 - [nginx-push-stream-module](https://github.com/wandenberg/nginx-push-stream-module) - HTTP push (Comet, EventSource, long-polling, WebSocket) as a pure-NGINX pub/sub stream. 📦
-- [nginx-srt-module](https://github.com/kaltura/nginx-srt-module) - Haivision SRT (Secure Reliable Transport) TCP gateway module. 📦
 - [nginx-ts-module](https://github.com/arut/nginx-ts-module) - MPEG-TS live streaming module. 📦
-- [nginx-vod-module](https://github.com/kaltura/nginx-vod-module) - On-the-fly MP4 repackager to DASH, HDS, HLS and MSS (by Kaltura). 📦
 - [ngx_http_html_sanitize_module](https://github.com/dvershinin/ngx_http_html_sanitize_module) - HTML5 sanitizer based on Google Gumbo, whitelisted elements, attributes and CSS. 📦
 - [ngx_http_untar_module](https://github.com/ajax16384/ngx_http_untar_module) - Serves file content directly out of tar archives. 📦
 - [ngx_small_light](https://github.com/dvershinin/ngx_small_light) - Dynamic image transformation (resize, crop, rotate, watermark). 📦
 - [ngx_webp](https://github.com/dvershinin/ngx_webp) - On-the-fly WebP conversion of JPEG and PNG responses. 📦
+- [srt](https://nginx-extras.getpagespeed.com/modules/srt/) - Haivision SRT (Secure Reliable Transport) TCP gateway module. 📦
+- [vod](https://nginx-extras.getpagespeed.com/modules/vod/) - On-the-fly MP4 repackager to DASH, HDS, HLS and MSS (by Kaltura). 📦
 
 ## Logging and observability
 

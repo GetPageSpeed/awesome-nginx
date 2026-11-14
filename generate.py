@@ -51,7 +51,7 @@ PRIVATE_REPO_DENYLIST = {
 
 
 def load_nginx_extras(extras_dir: Path) -> dict[str, dict]:
-    """Return {handle: {repo, summary, plan}} for every modules/**/*.yml."""
+    """Return {handle: {repo, summary, plan, closed_source}} for every modules/**/*.yml."""
     out: dict[str, dict] = {}
     modules_root = extras_dir / "modules"
     if not modules_root.is_dir():
@@ -69,6 +69,9 @@ def load_nginx_extras(extras_dir: Path) -> dict[str, dict]:
             "repo": (data.get("repo") or "").strip(),
             "summary": (data.get("summary") or "").strip(),
             "plan": data.get("plan", ""),
+            # free to install, but the source repository is private: its
+            # GitHub URL is a 404 for every reader
+            "closed_source": bool(data.get("closed_source")),
         }
     return out
 
@@ -149,13 +152,19 @@ def build_entries(
         meta = extras[handle]
         repo = meta["repo"]
         desc = conf.get("description") or meta.get("summary") or ""
+        public_repo = repo if not meta.get("closed_source") else ""
         if conf.get("link"):
             url = conf["link"]
-        elif repo:
-            url = github_url(repo)
+        elif public_repo:
+            url = github_url(public_repo)
         else:
             url = docs_url(handle)
-        label = conf.get("label") or (repo.split("/", 1)[-1] if repo else handle)
+        # A docs-page link is labelled by the handle; any other link keeps
+        # the repository name it has always been listed under.
+        named_repo = repo if (public_repo or conf.get("link")) else ""
+        label = conf.get("label") or (
+            named_repo.split("/", 1)[-1] if named_repo else handle
+        )
         by_cat[category].append({
             "label": label,
             "url": url,
