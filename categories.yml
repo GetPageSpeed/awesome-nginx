@@ -46,11 +46,10 @@ nginx_extras:
   security-headers: { category: "Security and WAF", description: "Sends modern security headers (CSP, X-Frame-Options, Referrer-Policy) and strips insecure ones." }
   naxsi: { category: "Security and WAF", description: "Open-source positive-model WAF for NGINX." }
   waf: { category: "Security and WAF", description: "High-performance, ModSecurity-compatible WAF module for NGINX." }
-  security: { category: "Security and WAF", description: "ModSecurity v3 connector for NGINX." }
+  security: { category: "Security and WAF", description: "ModSecurity v3 connector for NGINX.", link: "https://github.com/owasp-modsecurity/ModSecurity-nginx" }
 
 
   # Authentication
-  auth-digest: { category: "Authentication" }
   auth-hash: { category: "Authentication" }
   auth-ldap: { category: "Authentication" }
   auth-pam: { category: "Authentication", link: "https://nginx-extras.getpagespeed.com/modules/auth-pam/", label: "auth-pam"  }
@@ -106,7 +105,6 @@ nginx_extras:
   # Streaming, media and image processing
   rtmp: { category: "Streaming, media and image processing", description: "RTMP media streaming server based on the historical nginx-rtmp-module.", pin: 1 }
   flv: { category: "Streaming, media and image processing", description: "HTTP-FLV streaming on top of nginx-rtmp-module." }
-  ts: { category: "Streaming, media and image processing", description: "MPEG-TS live streaming module." }
   vod: { category: "Streaming, media and image processing", description: "On-the-fly MP4 repackager to DASH, HDS, HLS and MSS (by Kaltura)." }
   live-common: { category: "Streaming, media and image processing", description: "Kaltura Media Framework shared module, HTTP API, events, persistence and Lua interop." }
   srt: { category: "Streaming, media and image processing", description: "Haivision SRT (Secure Reliable Transport) TCP gateway module." }
@@ -136,7 +134,7 @@ nginx_extras:
   log-zmq: { category: "Logging and observability", description: "Stream access logs over ZeroMQ for centralized collection.", link: "https://nginx-extras.getpagespeed.com/modules/log-zmq/", label: "log-zmq"  }
   upstream-log: { category: "Logging and observability", description: "Writes upstream-side request logs separate from the client-side access log." }
   error-log-write: { category: "Logging and observability", description: "Conditionally emit error-log entries from configuration." }
-  otel: { category: "Logging and observability", description: "Official OpenTelemetry tracing exporter module for NGINX." }
+  otel: { category: "Logging and observability", description: "Official OpenTelemetry tracing exporter module for NGINX.", link: "https://github.com/nginx/nginx-otel" }
 
   # Lua and OpenResty ecosystem
   lua: { category: "Lua and OpenResty ecosystem", description: "Embed the power of LuaJIT into NGINX's HTTP request lifecycle.", pin: 1 }
@@ -154,17 +152,13 @@ nginx_extras:
   wasm-wasmtime: { category: "Lua and OpenResty ecosystem", description: "Proxy-Wasm (WebAssembly) support for NGINX, powered by wasmtime." }
 
   # Performance and optimization
-  pagespeed: { category: "Performance and optimization", description: "Apache mod_pagespeed for NGINX, automatic CSS/JS/image optimization at the edge.", pin: 1 }
   tuning: { category: "Performance and optimization", description: "Observes real traffic patterns and proposes data-driven NGINX tuning.", link: "https://nginx-extras.getpagespeed.com/modules/tuning/", label: "tuning"  }
   link: { category: "Performance and optimization", description: "Dlopen application code straight into NGINX request handling for ultra-low-latency endpoints.", link: "https://github.com/Taymindis/nginx-link-function", label: "nginx-link-function" }
-  sxg: { category: "Performance and optimization", description: "Signed HTTP Exchange (SXG) support, prefetch with original-origin attribution." }
   passenger: { category: "Performance and optimization", description: "Phusion Passenger application server module, runs Ruby/Python/Node apps inside NGINX." }
 
   # Upstreams, rate limiting and access control
   upsync: { category: "Upstreams, rate limiting and access control", description: "Sync HTTP upstreams from Consul or etcd without reloading NGINX." }
   stream-upsync: { category: "Upstreams, rate limiting and access control", description: "Sync stream {} upstreams from Consul or etcd." }
-  upstream-fair: { category: "Upstreams, rate limiting and access control", description: "Fair load-balancer based on number of in-flight requests per backend." }
-  upstream-jdomain: { category: "Upstreams, rate limiting and access control", description: "Async DNS resolution for upstream backends, survives DNS-only backends." }
   sticky: { category: "Upstreams, rate limiting and access control", description: "Sticky-cookie session affinity load balancer." }
   combined-upstreams: { category: "Upstreams, rate limiting and access control", description: "Adds add_upstream and combine_server_singlets directives for upstream composition." }
   upload: { category: "Upstreams, rate limiting and access control", description: "Streams multipart/form-data uploads straight to disk before passing metadata upstream.", link: "https://github.com/fdintino/nginx-upload-module" }
@@ -185,7 +179,6 @@ nginx_extras:
   label: { category: "Variables, JSON and extensibility", description: "Define global key-value labels for dynamic configuration." }
   let: { category: "Variables, JSON and extensibility", description: "Arithmetic and string expressions in the rewrite phase." }
   keyval: { category: "Variables, JSON and extensibility", description: "Key-value store backed module, variables sourced from disk-backed KV pairs." }
-  form-input: { category: "Variables, JSON and extensibility", description: "Parses application/x-www-form-urlencoded request bodies into variables." }
   iconv: { category: "Variables, JSON and extensibility", description: "Character-set conversion of request and response bodies via libiconv." }
   postgres: { category: "Variables, JSON and extensibility", description: "Direct PostgreSQL upstream, no PHP / app layer needed for read-heavy paths." }
 
@@ -214,7 +207,7 @@ extras:
   # Packaging and distribution
   - { url: "https://extras.getpagespeed.com/", title: "extras.getpagespeed.com", category: "Packaging and distribution", description: "Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.", pin: 1 }
   - { repo: "dvershinin/lastversion",                 category: "Packaging and distribution", description: "Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites." }
-  - { repo: "nginxinc/docker-nginx",                  category: "Packaging and distribution", description: "Official NGINX Docker images." }
+  - { repo: "nginx/docker-nginx",                     category: "Packaging and distribution", description: "Official NGINX Docker images." }
   - { url: "https://nginx.org/en/linux_packages.html", title: "nginx.org Linux packages", category: "Packaging and distribution", description: "Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES." }
 
   # Configuration and tooling
@@ -225,7 +218,7 @@ extras:
   - { repo: "dvershinin/nginxpwner",         category: "Configuration and tooling", description: "Look for common NGINX misconfigurations and exploitable patterns." }
   - { repo: "dvershinin/nginx-honeypot",     category: "Configuration and tooling", description: "Run an NGINX honeypot to capture and study attacker behaviour." }
   - { repo: "GetPageSpeed/ngxtop",           category: "Configuration and tooling", description: "Real-time NGINX top, like `top` for your traffic." }
-  - { repo: "valentinxxx/nginxconfig.io",    category: "Configuration and tooling", description: "Online NGINX config generator with sensible TLS, performance and security defaults." }
+  - { repo: "digitalocean/nginxconfig.io",  category: "Configuration and tooling", description: "Online NGINX config generator with sensible TLS, performance and security defaults." }
   - { url: "https://configurator.tlsref.org/", title: "TLSRef Configurator", category: "Configuration and tooling", description: "Successor to the Mozilla SSL Configuration Generator for the TLS / cipher configuration block." }
   - { url: "https://proxyforge.tech/", title: "ProxyForge", category: "Configuration and tooling", description: "Browser-based NGINX and Apache config generator for reverse proxies, WordPress, PHP-FPM and static sites, with separate generators for redirects, Let's Encrypt TLS and security headers. Output tested on real nginx 1.27." }
 
@@ -267,6 +260,5 @@ honourable:
   - { repo: "lyokha/nginx-haskell-module",           category: "Honourable mentions", description: "Embed Haskell handlers, asynchronous tasks and services into NGINX." }
   - { repo: "rryqszq4/ngx-php",                      category: "Honourable mentions", description: "Embedded PHP 7/8 scripting inside an NGINX module." }
   - { repo: "cubicdaiya/ngx_dynamic_upstream",       category: "Honourable mentions", description: "Add, remove and modify upstream servers without reloading NGINX." }
-  - { repo: "mdirolf/nginx-gridfs",                  category: "Honourable mentions", description: "Serve files directly from MongoDB GridFS." }
   - { repo: "arut/nginx-python-module",              category: "Honourable mentions", description: "Embed Python into NGINX request handling." }
   - { repo: "alibaba/nginx-http-user-agent",         category: "Honourable mentions", description: "Match browsers and crawlers by User-Agent, Alibaba's pattern." }

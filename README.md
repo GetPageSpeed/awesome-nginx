@@ -40,7 +40,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 ## Packaging and distribution
 
 - [extras.getpagespeed.com](https://extras.getpagespeed.com/) - Production-grade RPM and DEB repository with 130+ NGINX modules across all major distributions.
-- [docker-nginx](https://github.com/nginxinc/docker-nginx) - Official NGINX Docker images.
+- [docker-nginx](https://github.com/nginx/docker-nginx) - Official NGINX Docker images.
 - [lastversion](https://github.com/dvershinin/lastversion) - Find and download the latest release of any project on GitHub / GitLab / SourceForge / PyPI / Hg / official sites.
 - [nginx.org Linux packages](https://nginx.org/en/linux_packages.html) - Official NGINX binary packages for Debian, Ubuntu, RHEL/CentOS, Amazon Linux, SLES.
 
@@ -50,7 +50,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [crossplane](https://github.com/dvershinin/crossplane) - Convert NGINX configs to and from JSON, fork of the NGINX Amplify tool with fixes.
 - [gixy-jetbrains](https://github.com/GetPageSpeed/gixy-jetbrains) - JetBrains IDE plugin surfacing gixy findings inline.
 - [nginx-honeypot](https://github.com/dvershinin/nginx-honeypot) - Run an NGINX honeypot to capture and study attacker behaviour.
-- [nginxconfig.io](https://github.com/valentinxxx/nginxconfig.io) - Online NGINX config generator with sensible TLS, performance and security defaults.
+- [nginxconfig.io](https://github.com/digitalocean/nginxconfig.io) - Online NGINX config generator with sensible TLS, performance and security defaults.
 - [nginxpwner](https://github.com/dvershinin/nginxpwner) - Look for common NGINX misconfigurations and exploitable patterns.
 - [ngxtop](https://github.com/GetPageSpeed/ngxtop) - Real-time NGINX top, like `top` for your traffic.
 - [off-by-slash](https://github.com/dvershinin/off-by-slash) - Detect alias-traversal misconfigurations (the trailing-slash class of bugs).
@@ -60,7 +60,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 ## Security and WAF
 
 - [nginx-acme](https://github.com/nginx/nginx-acme) - Automatic certificate management (ACMEv2) module for NGINX, by F5/NGINX Inc. 📦
-- [ModSecurity-nginx](https://github.com/SpiderLabs/ModSecurity-nginx) - ModSecurity v3 connector for NGINX. 📦
+- [ModSecurity-nginx](https://github.com/owasp-modsecurity/ModSecurity-nginx) - ModSecurity v3 connector for NGINX. 📦
 - [naxsi](https://github.com/dvershinin/naxsi) - Open-source positive-model WAF for NGINX. 📦
 - [ngx_security_headers](https://github.com/GetPageSpeed/ngx_security_headers) - Sends modern security headers (CSP, X-Frame-Options, Referrer-Policy) and strips insecure ones. 📦
 - [ngx_waf](https://github.com/ADD-SP/ngx_waf) - High-performance, ModSecurity-compatible WAF module for NGINX. 📦
@@ -69,7 +69,6 @@ Every entry is production-grade — actively maintained and deployed on real sys
 
 - [auth-pam](https://nginx-extras.getpagespeed.com/modules/auth-pam/) - PAM authentication dynamic module for NGINX. 📦
 - [nginx-auth-ldap](https://github.com/dvershinin/nginx-auth-ldap) - LDAP Authentication module for NGINX. 📦
-- [nginx-http-auth-digest](https://github.com/atomx/nginx-http-auth-digest) - Digest Authentication for NGINX. 📦
 - [nginx-http-auth-totp](https://github.com/61131/nginx-http-auth-totp) - Time-based one-time password (TOTP) HTTP authentication for NGINX. 📦
 - [nginx-http-shibboleth](https://github.com/nginx-shib/nginx-http-shibboleth) - Shibboleth auth-request module for SAML SSO. 📦
 - [nginx-jwt-module](https://github.com/max-lt/nginx-jwt-module) - Check for a valid JWT and proxy to upstream (max-lt/nginx-jwt-module). 📦
@@ -137,7 +136,6 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [nchan](https://github.com/slact/nchan) - Scalable pub/sub server inside NGINX: HTTP, WebSocket, Server-Sent Events and long-polling. 📦
 - [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module) - HTTP-FLV streaming on top of nginx-rtmp-module. 📦
 - [nginx-push-stream-module](https://github.com/wandenberg/nginx-push-stream-module) - HTTP push (Comet, EventSource, long-polling, WebSocket) as a pure-NGINX pub/sub stream. 📦
-- [nginx-ts-module](https://github.com/arut/nginx-ts-module) - MPEG-TS live streaming module. 📦
 - [ngx_http_html_sanitize_module](https://github.com/dvershinin/ngx_http_html_sanitize_module) - HTML5 sanitizer based on Google Gumbo, whitelisted elements, attributes and CSS. 📦
 - [ngx_http_untar_module](https://github.com/ajax16384/ngx_http_untar_module) - Serves file content directly out of tar archives. 📦
 - [ngx_small_light](https://github.com/dvershinin/ngx_small_light) - Dynamic image transformation (resize, crop, rotate, watermark). 📦
@@ -153,7 +151,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [log-zmq](https://nginx-extras.getpagespeed.com/modules/log-zmq/) - Stream access logs over ZeroMQ for centralized collection. 📦
 - [nginx-module-stream-sts](https://github.com/vozlt/nginx-module-stream-sts) - Stream server traffic status core module (companion to sts). 📦
 - [nginx-module-sts](https://github.com/vozlt/nginx-module-sts) - Stream server traffic status, same idea as VTS but for the stream {} block. 📦
-- [nginx-otel](https://github.com/nginxinc/nginx-otel) - Official OpenTelemetry tracing exporter module for NGINX. 📦
+- [nginx-otel](https://github.com/nginx/nginx-otel) - Official OpenTelemetry tracing exporter module for NGINX. 📦
 - [nginx-statsd](https://github.com/dvershinin/nginx-statsd) - Send NGINX metrics to a StatsD collector. 📦
 - [ngx-sqlite-log](https://github.com/GetPageSpeed/ngx-sqlite-log) - SQLite-backed access log, queryable logs without a separate pipeline. 📦
 - [ngx_http_error_log_write_module](https://github.com/dvershinin/ngx_http_error_log_write_module) - Conditionally emit error-log entries from configuration. 📦
@@ -180,9 +178,7 @@ Every entry is production-grade — actively maintained and deployed on real sys
 
 ## Performance and optimization
 
-- [incubator-pagespeed-ngx](https://github.com/apache/incubator-pagespeed-ngx) - Apache mod_pagespeed for NGINX, automatic CSS/JS/image optimization at the edge. 📦
 - [nginx-link-function](https://github.com/Taymindis/nginx-link-function) - Dlopen application code straight into NGINX request handling for ultra-low-latency endpoints. 📦
-- [nginx-sxg-module](https://github.com/google/nginx-sxg-module) - Signed HTTP Exchange (SXG) support, prefetch with original-origin attribution. 📦
 - [passenger](https://github.com/phusion/passenger) - Phusion Passenger application server module, runs Ruby/Python/Node apps inside NGINX. 📦
 - [tuning](https://nginx-extras.getpagespeed.com/modules/tuning/) - Observes real traffic patterns and proposes data-driven NGINX tuning. 📦
 
@@ -196,18 +192,15 @@ Every entry is production-grade — actively maintained and deployed on real sys
 - [nginx-stream-upsync-module](https://github.com/xiaokai-wang/nginx-stream-upsync-module) - Sync stream {} upstreams from Consul or etcd. 📦
 - [nginx-upload-module](https://github.com/fdintino/nginx-upload-module) - Streams multipart/form-data uploads straight to disk before passing metadata upstream. 📦
 - [nginx-upload-progress-module](https://github.com/masterzen/nginx-upload-progress-module) - Real-time upload progress tracking for browser UIs. 📦
-- [nginx-upstream-fair](https://github.com/itoffshore/nginx-upstream-fair) - Fair load-balancer based on number of in-flight requests per backend. 📦
 - [nginx-upsync-module](https://github.com/weibocom/nginx-upsync-module) - Sync HTTP upstreams from Consul or etcd without reloading NGINX. 📦
 - [ngx_dynamic_limit_req_module](https://github.com/limithit/ngx_dynamic_limit_req_module) - Dynamically locks an IP after threshold and releases it after a configurable window. 📦
 - [ngx_http_access_control_module](https://github.com/dvershinin/ngx_http_access_control_module) - Advanced access control by NGINX variables (beyond allow / deny by IP). 📦
 - [ngx_http_delay_module](https://github.com/dvershinin/ngx_http_delay_module) - Insert a configurable delay before responding, useful for shaping or tarpitting. 📦
 - [ngx_http_limit_traffic_ratefilter_module](https://github.com/dvershinin/ngx_http_limit_traffic_ratefilter_module) - Rate-limit traffic by arbitrary NGINX variables (e.g. per token, per geo). 📦
-- [ngx_upstream_jdomain](https://github.com/nicholaschiasson/ngx_upstream_jdomain) - Async DNS resolution for upstream backends, survives DNS-only backends. 📦
 - [rate-limit-nginx-module](https://github.com/weserv/rate-limit-nginx-module) - Redis-backed cluster-wide rate limiting. 📦
 
 ## Variables, JSON and extensibility
 
-- [form-input-nginx-module](https://github.com/calio/form-input-nginx-module) - Parses application/x-www-form-urlencoded request bodies into variables. 📦
 - [iconv-nginx-module](https://github.com/calio/iconv-nginx-module) - Character-set conversion of request and response bodies via libiconv. 📦
 - [nginx-json-var-module](https://github.com/dvershinin/nginx-json-var-module) - Group variable expressions as a JSON value for clean logging. 📦
 - [nginx-keyval](https://github.com/kjdev/nginx-keyval) - Key-value store backed module, variables sourced from disk-backed KV pairs. 📦
@@ -244,7 +237,6 @@ Every entry is production-grade — actively maintained and deployed on real sys
 ## Honourable mentions
 
 - [nginx-ct](https://github.com/grahamedgecombe/nginx-ct) - Certificate Transparency support, embeds SCTs into TLS handshakes (175★).
-- [nginx-gridfs](https://github.com/mdirolf/nginx-gridfs) - Serve files directly from MongoDB GridFS (792★).
 - [nginx-haskell-module](https://github.com/lyokha/nginx-haskell-module) - Embed Haskell handlers, asynchronous tasks and services into NGINX (161★).
 - [nginx-http-user-agent](https://github.com/alibaba/nginx-http-user-agent) - Match browsers and crawlers by User-Agent, Alibaba's pattern (162★).
 - [nginx-python-module](https://github.com/arut/nginx-python-module) - Embed Python into NGINX request handling (139★).
