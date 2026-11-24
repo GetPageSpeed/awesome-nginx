@@ -68,7 +68,6 @@ nginx_extras:
   teslagov-jwt: { category: "Authentication", description: "JWT validation module (TeslaGov fork)." }
 
   # Bot mitigation
-  bot-verifier: { category: "Bot mitigation", description: "Verifies good-bot identity by reverse-DNS (Googlebot, Bingbot and friends).", link: "https://github.com/repsheet/ngx_bot_verifier", label: "ngx_bot_verifier"  }
   captcha: { category: "Bot mitigation", description: "Native CAPTCHA generation and validation in NGINX." }
   js-challenge: { category: "Bot mitigation", description: "Proof-of-work JavaScript challenge for anti-DDoS, similar to Cloudflare's." }
   testcookie: { category: "Bot mitigation", description: "Cookie-based challenge/response for low-effort bot mitigation." }

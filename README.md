@@ -87,7 +87,6 @@ Every entry is production-grade — actively maintained and deployed on real sys
 ## Bot mitigation
 
 - [nginx-length-hiding-filter-module](https://github.com/nulab/nginx-length-hiding-filter-module) - Appends a random-length string to HTML responses to defeat BREACH/CRIME-class attacks. 📦
-- [ngx_bot_verifier](https://github.com/repsheet/ngx_bot_verifier) - Verifies good-bot identity by reverse-DNS (Googlebot, Bingbot and friends). 📦
 - [ngx_cookie_limit_req_module](https://github.com/dvershinin/ngx_cookie_limit_req_module) - Limits request rate per malicious forged cookie. 📦
 - [ngx_http_captcha_module](https://github.com/RekGRpth/ngx_http_captcha_module) - Native CAPTCHA generation and validation in NGINX. 📦
 - [ngx_http_js_challenge_module](https://github.com/dvershinin/ngx_http_js_challenge_module) - Proof-of-work JavaScript challenge for anti-DDoS, similar to Cloudflare's. 📦
